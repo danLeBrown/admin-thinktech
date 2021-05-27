@@ -1,0 +1,27 @@
+{
+    "vue3snippets.enable-compile-vue-file-on-did-save-code": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.fixAll.eslint": true,
+    },
+    "editor.formatOnSave": true,
+    "javascript.format.enable": false,
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#0a7fe8",
+        "activityBar.activeBorder": "#990754",
+        "activityBar.background": "#0a7fe8",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#990754",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "statusBar.background": "#0864b7",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#0a7fe8",
+        "titleBar.activeBackground": "#0864b7",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#0864b799",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#0864b7",
+      "eslint.workingDirectories": [{"mode": "auto"}]
+}
