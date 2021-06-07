@@ -16,6 +16,7 @@
               name=""
               placeholder="Enter title here"
               required
+              :disabled="$route.query.edit === 'true'"
             />
           </h3>
           <div class="select-div">
@@ -79,65 +80,117 @@ export default {
       editor: {},
       title: '',
       loading: false,
+      article: {},
     }
   },
   async mounted() {
-    const editor = new EditorJS({
-      /** * Id of Element that should contain the Editor
-       */ holder: 'editorjs',
-      /** * Available Tools list. * Pass Tool's class or
+    let editor
+    if (this.$route.query.edit === 'true') {
+      await this.getArticle(this.$route.query.title)
+      this.title = this.article.body.title
+      editor = new EditorJS({
+        /** * Id of Element that should contain the Editor
+         */ holder: 'editorjs',
+        /** * Available Tools list. * Pass Tool's class or
 Settings object for each Tool you want to use */
-      tools: {
-        quote: {
-          class: Quote,
-          inlineToolbar: true,
-          shortcut: 'CMD+SHIFT+O',
-          config: {
-            quotePlaceholder: 'Enter a quote',
-            captionPlaceholder: "Quote's author",
+        tools: {
+          quote: {
+            class: Quote,
+            inlineToolbar: true,
+            shortcut: 'CMD+SHIFT+O',
+            config: {
+              quotePlaceholder: 'Enter a quote',
+              captionPlaceholder: "Quote's author",
+            },
           },
-        },
-        header: {
-          class: Header,
-          config: {
-            placeholder: 'Enter a header',
-            levels: [2, 3, 4],
-            defaultLevel: 3,
+          header: {
+            class: Header,
+            config: {
+              placeholder: 'Enter a header',
+              levels: [2, 3, 4],
+              defaultLevel: 3,
+            },
+            inlineToolbar: ['link'],
           },
-          inlineToolbar: ['link'],
-        },
 
-        list: { class: List, inlineToolbar: true },
-        embed: {
-          class: Embed,
-          config: { services: { youtube: true, coub: true } },
-          inlineToolbar: true,
-        },
-        checklist: { class: Checklist, inlineToolbar: true },
-        image: {
-          class: ImageTool,
-          config: {
-            endpoints: {
-              byFile: 'https://thinktech.fuoye360.com/api/articles/image', // Your backend file uploader endpoint
-              byUrl: 'https://thinktech.fuoye360.com/api/fetchUrl', // Your endpoint that provides uploading by Url
+          list: { class: List, inlineToolbar: true },
+          embed: {
+            class: Embed,
+            config: { services: { youtube: true, coub: true } },
+            inlineToolbar: true,
+          },
+          checklist: { class: Checklist, inlineToolbar: true },
+          image: {
+            class: ImageTool,
+            config: {
+              endpoints: {
+                byFile: 'https://thinktech.fuoye360.com/api/articles/image', // Your backend file uploader endpoint
+                byUrl: 'https://thinktech.fuoye360.com/api/fetchUrl', // Your endpoint that provides uploading by Url
+              },
+            },
+          },
+          // image: SimpleImage,
+          linkTool: {
+            class: LinkTool,
+            config: {
+              endpoint: 'https://thinktech.fuoye360.com/fetchUrl', // Your backend endpoint for url data fetching
             },
           },
         },
-        // image: SimpleImage,
-        linkTool: {
-          class: LinkTool,
-          config: {
-            endpoint: 'https://thinktech.fuoye360.com/fetchUrl', // Your backend endpoint for url data fetching
+        data: this.article.body,
+      })
+    } else {
+      editor = new EditorJS({
+        /** * Id of Element that should contain the Editor
+         */ holder: 'editorjs',
+        /** * Available Tools list. * Pass Tool's class or
+Settings object for each Tool you want to use */
+        tools: {
+          quote: {
+            class: Quote,
+            inlineToolbar: true,
+            shortcut: 'CMD+SHIFT+O',
+            config: {
+              quotePlaceholder: 'Enter a quote',
+              captionPlaceholder: "Quote's author",
+            },
+          },
+          header: {
+            class: Header,
+            config: {
+              placeholder: 'Enter a header',
+              levels: [2, 3, 4],
+              defaultLevel: 3,
+            },
+            inlineToolbar: ['link'],
+          },
+
+          list: { class: List, inlineToolbar: true },
+          embed: {
+            class: Embed,
+            config: { services: { youtube: true, coub: true } },
+            inlineToolbar: true,
+          },
+          checklist: { class: Checklist, inlineToolbar: true },
+          image: {
+            class: ImageTool,
+            config: {
+              endpoints: {
+                byFile: 'https://thinktech.fuoye360.com/api/articles/image', // Your backend file uploader endpoint
+                byUrl: 'https://thinktech.fuoye360.com/api/fetchUrl', // Your endpoint that provides uploading by Url
+              },
+            },
+          },
+          // image: SimpleImage,
+          linkTool: {
+            class: LinkTool,
+            config: {
+              endpoint: 'https://thinktech.fuoye360.com/fetchUrl', // Your backend endpoint for url data fetching
+            },
           },
         },
-      },
-    })
-    if (this.$route.query.edit === 'true') {
-      await this.getArticle(this.$route.params.query.title)
-      this.title = this.article.body.title
-      editor.data = this.article.body
+      })
     }
-
     document.querySelector('#editor-form').addEventListener('submit', () => {
       editor
         .save()
@@ -157,6 +210,18 @@ Settings object for each Tool you want to use */
         this.loading = false
         this.$router.push({ name: 'articles' })
       })
+    },
+    getArticle(title) {
+      return Article.getTitle(title)
+        .then((res) => {
+          this.article = res.data.data.article
+          this.$root.$emit('setSimilarArticles', res.data.data.similar_articles)
+          return true
+        })
+        .catch((err) => {
+          console.log(err)
+          // this.$root.$emit('alertNotification', err.response.status)
+        })
     },
   },
 }
