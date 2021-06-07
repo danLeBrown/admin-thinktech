@@ -1,9 +1,7 @@
 <template>
   <div id="dashboard">
     <h2><i class="bi bi-bar-chart"></i> Dashboard</h2>
-    <br />
-    <br />
-    <div>
+    <div style="padding: 1rem">
       <div class="analytics-stat">
         <div class="analytics-container">
           <div class="content written"><h3>ARTICLES WRITTEN</h3></div>
@@ -16,7 +14,8 @@
         </div>
       </div>
     </div>
-    <div class="div-wrapper notifications-box">
+    <br />
+    <div class="notifications-box">
       <h2><i class="bi bi-bell" aria-hidden="true"></i> Notifications</h2>
       <div class="notification-content">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iste
@@ -41,8 +40,24 @@
 </template>
 
 <script>
+import User from '~/assets/js/api/User'
 export default {
   name: 'Index',
+  data() {
+    return {
+      analytics_stats: {},
+    }
+  },
+  mounted() {
+    this.setup()
+  },
+  methods: {
+    setup() {
+      User.stats().then((res) => {
+        this.analytics_stats = res.data.data
+      })
+    },
+  },
 }
 </script>
 

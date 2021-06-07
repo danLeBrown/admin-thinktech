@@ -179,7 +179,6 @@ export default {
         })
         .catch((err) => {
           console.log(err)
-          // this.$root.$emit('alertNotification', err.response.status)
         })
     },
     setupPage() {

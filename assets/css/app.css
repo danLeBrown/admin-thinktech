@@ -1,6 +1,9 @@
 :root{
+    --white-color: #fff;
     --brand-color: #0864b7;
     --red: #ef476f;
+    --input-border-color: #e4e9f2;
+    --brand-color-bg:rgba(8, 100, 183, 0.25);
 }
 /* :root {
     
@@ -113,6 +116,173 @@ body {
 .main-content {
     min-height: 100vh;
     padding-top: 2rem;
+}
+.form-container{
+    padding: 1rem;
+}
+.form-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+}
+
+.form-container form {
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid #eaedf3;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 4%);
+}
+
+.form-container form p {
+    margin-bottom: 0;
+}
+
+.form-container form a {
+    text-decoration: underline;
+}
+
+.form-container form .input-div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    margin: 2rem 0;
+}
+
+.form-container form .input-div label {
+    padding: 0 .3rem;
+    position: absolute;
+    margin: .3rem;
+    text-transform: uppercase;
+    /* background: var(--white-color); */
+    top: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    color: var(--input-border-color);
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.form-container form .input-div input,
+.form-container form .input-div textarea,
+.form-container form .input-div select {
+    font: inherit;
+    width: 100%;
+    border: 1px solid var(--input-border-color);
+    padding: 13px 16px;
+     transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    border-radius: .5rem;
+    resize: none;
+    background: #f7f9fc;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+}
+
+.form-container form .input-div .form-validation {
+    margin-left: .5rem;
+    font-size: 1.2rem;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-weight: bold;
+    position: absolute;
+    right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container form .input-div .invalid {
+    background: var(--red-color);
+    color: var(--white-color);
+}
+
+.form-container form .input-div .valid {
+    background: var(--brand-color);
+    color: var(--white-color);
+}
+
+.form-container .btn-div{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.btn-div div{
+    max-width: 200px;
+    margin: 0 .5rem;
+}
+.form-container .btn-div .lhs-btn{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+.form-container .btn-div .rhs-btn{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+.form-container button {
+    display: inline;
+    opacity: .9;
+    border: 1px solid var(--brand-color);
+    font: inherit;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 1rem;
+    width: 25%;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    display: inline-block;
+    width: 100%;
+}
+
+.form-container .fill-btn{
+    box-shadow: 0 4px 14px 0 var(--orange-bg);
+    background: var(--brand-color);
+    color: var(--white-color);
+}
+
+.form-container .default-btn{
+    background: none;
+    color: var(--brand-color);
+}
+.form-container form .input-div .active {
+    top: -1rem;
+    color: var(--brand-color);
+    font-weight: bold;
+    background: #fff;
+}
+
+.form-container form .input-div input:focus,
+.form-container form .input-div textarea:focus,
+form .input-div select {
+    outline: none;
+}
+
+.form-container form button:hover,
+.form-container form button:focus {
+    box-shadow: 0 4px 14px 0 var(--brand-color-bg);
+}
+.form-container form .loading-btn{
+    box-shadow: 0 0 14px var(--brand-color-bg);
+
 }
 
 .postcard-container{
