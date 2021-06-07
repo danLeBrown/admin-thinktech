@@ -107,7 +107,7 @@ Settings object for each Tool you want to use */
           class: ImageTool,
           config: {
             endpoints: {
-              byFile: 'http://localhost:8000/api/articles/image', // Your backend file uploader endpoint
+              byFile: 'https://thinktech.fuoye360.com/api/articles/image', // Your backend file uploader endpoint
               byUrl: 'https://thinktech.fuoye360.com/api/fetchUrl', // Your endpoint that provides uploading by Url
             },
           },
@@ -116,7 +116,7 @@ Settings object for each Tool you want to use */
         linkTool: {
           class: LinkTool,
           config: {
-            endpoint: 'http://localhost:8008/fetchUrl', // Your backend endpoint for url data fetching
+            endpoint: 'https://thinktech.fuoye360.com/fetchUrl', // Your backend endpoint for url data fetching
           },
         },
       },
