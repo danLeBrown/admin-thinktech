@@ -1,6 +1,6 @@
 <template>
   <div id="dashboard">
-    <h2><i class="fas fa-chart-bar"></i> Dashboard</h2>
+    <h2><i class="bi bi-bar-chart"></i> Dashboard</h2>
     <br />
     <br />
     <div>
@@ -14,6 +14,27 @@
         <div class="analytics-container">
           <div class="content visits"><h3>PROFILE VISITS</h3></div>
         </div>
+      </div>
+    </div>
+    <div class="div-wrapper notifications-box">
+      <h2><i class="bi bi-bell" aria-hidden="true"></i> Notifications</h2>
+      <div class="notification-content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iste
+        totam odio cumque fugiat quaerat est optio, molestias voluptatibus
+        deleniti harum eligendi blanditiis facilis, a repellat, unde tempora
+        similique dignissimos.
+      </div>
+      <div class="notification-content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero vel
+        pariatur deserunt nisi commodi dolor assumenda tempore repudiandae
+        corrupti delectus. Fuga alias aliquid quam doloribus non dolor, et
+        consequuntur officiis.
+      </div>
+      <div class="notification-content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis iure,
+        voluptatibus repudiandae consequuntur iste eveniet laborum quae vitae
+        adipisci cumque itaque eius odit id corrupti nisi exercitationem
+        voluptatem debitis natus?
       </div>
     </div>
   </div>
@@ -44,11 +65,6 @@ export default {
   border-radius: 1rem;
   color: #fff;
 }
-/* .content h3 {
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-transform: capitalize !important;
-} */
 .written {
   background: #06d6a0;
   box-shadow: 0 14px 14px 0 rgba(6, 214, 160, 0.25);
@@ -60,5 +76,10 @@ export default {
 .visits {
   background: #ef476f;
   box-shadow: 0 14px 14px 0 rgba(239, 71, 111, 0.25);
+}
+
+.notification-content {
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
 }
 </style>

@@ -1,6 +1,5 @@
 import Api from './Api'
 import Csrf from './Csrf'
-
 export default {
   async getTrending() {
     await Csrf.getCookie()
@@ -20,6 +19,18 @@ export default {
   },
   async getTitle(title) {
     await Csrf.getCookie()
-    return Api.get('/article/' + title)
+    return Api.get('/articles/' + title)
+  },
+  async create(data, id) {
+    await Csrf.getCookie()
+    if (id) {
+      return Api.post('/articles', { ...data, id, edit: true })
+    }
+    return Api.post('/articles', data)
+  },
+
+  async delete(id) {
+    await Csrf.getCookie()
+    return Api.delete('/articles/' + id)
   },
 }

@@ -1,7 +1,5 @@
 <template>
   <div id="articles-component">
-    <h2><i class="fas fa-newspaper"></i> Articles</h2>
-    <br /><br />
     <div v-if="$route.name == 'title'" class="pt-4 pb-4">
       <h4>YOU MIGHT ALSO LIKE...</h4>
     </div>
@@ -32,56 +30,21 @@
       </div>
     </div>
     <div v-else class="articles-div">
-      <div
-        v-for="article in articles"
-        :key="article.id"
-        v-ripple
-        class="postcard mb-4"
-      >
-        <div class="postcard-container">
-          <router-link
-            class="postcard-img-div"
-            :to="{ name: 'title', params: { title: article.meta.title_link } }"
-          >
-            <img
-              class="postcard-img"
-              :src="$asset('assets/images/' + article.images[0])"
-              :alt="'' + article.title"
-            />
-          </router-link>
-          <div class="postcard-text-div">
-            <div class="mb-2">
-              <router-link
-                class="postcard-header"
-                :to="{
-                  name: 'title',
-                  params: { title: article.meta.title_link },
-                }"
-              >
-                {{ article.title }}
-              </router-link>
-            </div>
-            <div class="postcard-mini mb-2">
-              {{ article.body }}
-            </div>
-            <div class="postcard-time">
-              <span>
-                {{ article.timeago }}
-              </span>
-              <span> &dash; </span>
-              <span> 2 mins read </span>
-            </div>
-          </div>
-        </div>
+      <div v-for="article in articles" :key="article.id" v-ripple>
+        <SingleArticleComponent :article="article" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import SingleArticleComponent from './SingleArticleComponent'
 import Article from '~/assets/js/api/Article'
 export default {
   name: 'ArticlesComponent',
+  components: {
+    SingleArticleComponent,
+  },
   data() {
     return {
       loading: true,
@@ -89,11 +52,6 @@ export default {
       author: {},
     }
   },
-  // watch: {
-  //   $route() {
-  //     this.loading = true
-  //   },
-  // },
   mounted() {
     this.$root.$on('setSimilarArticles', (data) => {
       this.articles = data
@@ -101,6 +59,10 @@ export default {
     })
     this.$root.$on('authorUpdated', () => {
       this.fetchAuthor()
+    })
+
+    this.$root.$on('articleDeleted', (id) => {
+      this.articles = this.articles.filter((article) => article.id !== id)
     })
     if (this.$route.name === 'articles') {
       this.fetchAuthor()

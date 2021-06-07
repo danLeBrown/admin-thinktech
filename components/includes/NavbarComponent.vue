@@ -18,23 +18,23 @@
           <div class="aside-nav-content nav-container">
             <div class="navbar-links nav">
               <nuxt-link to="/dashboard"
-                ><i class="fas fa-chart-bar"></i> Dashboard</nuxt-link
+                ><i class="bi bi-bar-chart"></i> Dashboard</nuxt-link
               >
               <nuxt-link to="/articles"
-                ><i class="fas fa-newspaper"></i> Articles</nuxt-link
+                ><i class="bi bi-newspaper"></i> Articles</nuxt-link
               >
-              <nuxt-link to="/dashboard"
-                ><i class="fas fa-list"></i> Categories</nuxt-link
+              <nuxt-link to="/categories"
+                ><i class="bi bi-card-list"></i> Categories</nuxt-link
               >
-              <nuxt-link to="/dashboard"
-                ><i class="fas fa-cogs"></i> Settings</nuxt-link
+              <nuxt-link to="/edit-profile"
+                ><i class="bi bi-person"></i> Profile</nuxt-link
               >
             </div>
             <button v-if="!dark" v-ripple @click="darkThemeSwitch">
-              <i class="fas fa-moon"></i>
+              <i class="bi bi-moon"></i>
             </button>
             <button v-else v-ripple @click="darkThemeSwitch">
-              <i class="fas fa-sun"></i>
+              <i class="bi bi-sun"></i>
             </button>
           </div>
         </aside>
@@ -71,7 +71,7 @@
                 "
               />
               <button v-ripple>
-                <i class="fas fa-search"></i>
+                <i class="bi bi-search"></i>
               </button>
             </form>
           </div>

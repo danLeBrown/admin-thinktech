@@ -26,6 +26,11 @@ export default {
         href:
           'https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;500;600;700&display=swap',
       },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css',
+      },
     ],
   },
 
@@ -33,7 +38,11 @@ export default {
   css: ['@/assets/css/app.css', '@/assets/css/all.min.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['@/plugins/asset.js', '@/plugins/vuetify.js'],
+  plugins: [
+    '@/plugins/asset.js',
+    '@/plugins/vuetify.js',
+    // { src: '~/plugins/vue-editor.js', ssr: false },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -69,6 +78,7 @@ export default {
           // nav: '#eee',
           nav: '#fcfcfc',
           aside: 'rgba(0, 0, 0, .6)',
+          brandColor: '#0864b7',
         },
         dark: {
           anchor: '#fff',

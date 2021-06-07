@@ -4,6 +4,7 @@
       <v-main>
         <v-container id="app-container">
           <NavbarComponent id="nav-component" />
+          <div></div>
           <RouterView id="router-view" />
         </v-container>
       </v-main>
@@ -22,14 +23,16 @@ export default {
 
 <style scoped>
 #app-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 20% 80%;
   width: 100%;
 }
 #nav-component {
   flex: 2;
   height: 100vh;
-  position: sticky;
-  top: 0px;
+  position: fixed;
+  top: 0;
+  width: 19%;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
 }
 #router-view {
