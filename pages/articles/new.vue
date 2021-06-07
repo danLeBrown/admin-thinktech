@@ -81,12 +81,7 @@ export default {
       loading: false,
     }
   },
-  mounted() {
-    // const content = document.getElementById('editor-form')
-    // content.on('submit', (e) => {
-    //   e.preventDefault()
-    // })
-
+  async mounted() {
     const editor = new EditorJS({
       /** * Id of Element that should contain the Editor
        */ holder: 'editorjs',
@@ -137,6 +132,12 @@ Settings object for each Tool you want to use */
         },
       },
     })
+    if (this.$route.query.edit === 'true') {
+      await this.getArticle(this.$route.params.query.title)
+      this.title = this.article.body.title
+      editor.data = this.article.body
+    }
+
     document.querySelector('#editor-form').addEventListener('submit', () => {
       editor
         .save()

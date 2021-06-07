@@ -124,7 +124,7 @@ export default {
     },
     edit() {
       return this.$router.push(
-        `/articles/edit/${this.d_article.meta.title_link}`
+        `/articles/new?edit=true&title=${this.d_article.meta.title_link}`
       )
     },
     confirmDel() {
