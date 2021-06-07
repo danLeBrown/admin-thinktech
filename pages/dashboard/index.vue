@@ -4,13 +4,52 @@
     <div style="padding: 1rem">
       <div class="analytics-stat">
         <div class="analytics-container">
-          <div class="content written"><h3>ARTICLES WRITTEN</h3></div>
+          <div class="content written">
+            <h3>ARTICLES WRITTEN</h3>
+            <div class="content-data">
+              <span v-if="loading"
+                ><v-progress-circular
+                  indeterminate
+                  color="white"
+                  width="3"
+                  size="20"
+                ></v-progress-circular
+              ></span>
+              <h3 v-else>{{ analytics_stats.articles_written }}</h3>
+            </div>
+          </div>
         </div>
         <div class="analytics-container">
-          <div class="content reads"><h3>ARTICLES READ</h3></div>
+          <div class="content reads">
+            <h3>ARTICLES READ</h3>
+            <div class="content-data">
+              <span v-if="loading"
+                ><v-progress-circular
+                  indeterminate
+                  color="white"
+                  width="3"
+                  size="20"
+                ></v-progress-circular
+              ></span>
+              <h3 v-else>{{ analytics_stats.articles_views }}</h3>
+            </div>
+          </div>
         </div>
         <div class="analytics-container">
-          <div class="content visits"><h3>PROFILE VISITS</h3></div>
+          <div class="content visits">
+            <h3>PROFILE VISITS</h3>
+            <div class="content-data">
+              <span v-if="loading"
+                ><v-progress-circular
+                  indeterminate
+                  color="white"
+                  width="3"
+                  size="20"
+                ></v-progress-circular
+              ></span>
+              <h3 v-else>{{ analytics_stats.profile_visits }}</h3>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -46,6 +85,7 @@ export default {
   data() {
     return {
       analytics_stats: {},
+      loading: true,
     }
   },
   mounted() {
@@ -55,6 +95,7 @@ export default {
     setup() {
       User.stats().then((res) => {
         this.analytics_stats = res.data.data
+        this.loading = false
       })
     },
   },
@@ -79,6 +120,13 @@ export default {
   max-width: 300px;
   border-radius: 1rem;
   color: #fff;
+  position: relative;
+}
+
+.content-data {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
 }
 .written {
   background: #06d6a0;
