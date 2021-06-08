@@ -21,14 +21,10 @@ export default {
     await Csrf.getCookie()
     return Api.get('/articles/' + title)
   },
-  async create(data, id) {
+  async create(data) {
     await Csrf.getCookie()
-    if (id) {
-      return Api.post('/articles', { ...data, id, edit: true })
-    }
     return Api.post('/articles', data)
   },
-
   async delete(id) {
     await Csrf.getCookie()
     return Api.delete('/articles/' + id)

@@ -207,8 +207,9 @@ Settings object for each Tool you want to use */
   methods: {
     saveArticle(output) {
       if (this.$route.query.edit === 'true') {
-        output.title = this.title
-        return Article.create(output, this.article.id).then(() => {
+        output.id = this.article.id
+        output.edit = true
+        return Article.create(output).then(() => {
           this.loading = false
           this.$router.push({ name: 'articles' })
         })
