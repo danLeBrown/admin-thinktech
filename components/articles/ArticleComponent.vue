@@ -15,7 +15,7 @@
         <div class="post-header">
           <div class="post-meta">
             <div class="postcard-text-div">
-              <div class="mb-4">
+              <!-- <div class="mb-4">
                 <nuxt-link
                   :to="{
                     name: 'tag-tag',
@@ -26,14 +26,16 @@
                 >
                   <h4 class="postcard-tag">{{ article.tag }}</h4>
                 </nuxt-link>
-              </div>
+              </div> -->
               <div class="mb-1">
                 <h1 class="post-title">{{ article.title }}</h1>
               </div>
               <div class="mb-0 postcard-time">
-                <span>
-                  {{ article.timeago }}
-                </span>
+                <span
+                  ><b
+                    ><i class="bi bi-clock"></i> {{ article.timeago }}</b
+                  ></span
+                >
                 <span> &dash; </span>
                 <span> 2 mins read </span>
               </div>
