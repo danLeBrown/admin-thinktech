@@ -139,6 +139,7 @@ Settings object for each Tool you want to use */
         },
         data: this.article.body,
       })
+      this.title = this.article.title
     } else {
       editor = new EditorJS({
         /** * Id of Element that should contain the Editor
