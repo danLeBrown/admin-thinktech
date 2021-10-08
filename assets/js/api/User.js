@@ -1,4 +1,3 @@
-import { get } from 'core-js/core/dict'
 import Api from './Api'
 import Csrf from './Csrf'
 export default {
@@ -21,7 +20,7 @@ export default {
     return Api.get('/author/analytics-stats')
   },
 
-  async get() {
+  async getCurrent() {
     await Csrf.getCookie()
     return Api.get('/user')
   },

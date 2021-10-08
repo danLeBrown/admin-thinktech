@@ -65,7 +65,10 @@ export default {
     },
     async register() {
       this.loading = true
-      await User.register(this.user)
+      await User.register(this.user).then(async () => {
+        await this.$store.dispatch('user/getUser')
+        this.$router.push('/dashboard')
+      })
       this.loading = false
     },
   },

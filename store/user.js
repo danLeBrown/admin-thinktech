@@ -18,8 +18,8 @@ const actions = {
     return commit('setUser', res.data.data)
   },
   getUser: async ({ commit }, formData) => {
-    const res = await User.get()
-    return commit('setUser', res.data.data)
+    const res = await User.getCurrent()
+    return commit('setUser', res.data.user)
   },
 }
 
