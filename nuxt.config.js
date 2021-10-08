@@ -108,4 +108,8 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
   ssr: false,
+  loading: {
+    color: '#0864b7',
+    height: '5px',
+  },
 }

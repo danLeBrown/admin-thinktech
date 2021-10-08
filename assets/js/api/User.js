@@ -11,6 +11,6 @@ export default {
   },
   async stats() {
     await Csrf.getCookie()
-    return Api.get('/admin/analytics-stats')
+    return Api.get('/author/analytics-stats')
   },
 }
