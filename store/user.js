@@ -17,6 +17,10 @@ const actions = {
     const res = await User.update(formData)
     return commit('setUser', res.data.data)
   },
+  getUser: async ({ commit }, formData) => {
+    const res = await User.get()
+    return commit('setUser', res.data.data)
+  },
 }
 
 const mutations = {
