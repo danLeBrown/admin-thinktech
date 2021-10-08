@@ -144,7 +144,7 @@ export default {
             config: {
               endpoints: {
                 byFile:
-                  'https://api-thinktech.herokuapp.com/api/v1/articles/image', // Your backend file uploader endpoint
+                  'https://api-thinktech.herokuapp.com/api/v1/articles/upload-image', // Your backend file uploader endpoint
                 byUrl: 'https://api-thinktech.herokuapp.com/api/v1/fetchUrl', // Your endpoint that provides uploading by Url
               },
             },
