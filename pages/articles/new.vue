@@ -143,8 +143,9 @@ export default {
             class: ImageTool,
             config: {
               endpoints: {
-                byFile: 'https://thinktech.fuoye360.com/api/articles/image', // Your backend file uploader endpoint
-                byUrl: 'https://thinktech.fuoye360.com/api/fetchUrl', // Your endpoint that provides uploading by Url
+                byFile:
+                  'https://api-thinktech.herokuapp.com/api/v1/articles/image', // Your backend file uploader endpoint
+                byUrl: 'https://api-thinktech.herokuapp.com/api/v1/fetchUrl', // Your endpoint that provides uploading by Url
               },
             },
           },
@@ -152,7 +153,7 @@ export default {
           linkTool: {
             class: LinkTool,
             config: {
-              endpoint: 'https://thinktech.fuoye360.com/fetchUrl', // Your backend endpoint for url data fetching
+              endpoint: 'https://api-thinktech.herokuapp.com/api/v1/fetchUrl', // Your backend endpoint for url data fetching
             },
           },
         },
