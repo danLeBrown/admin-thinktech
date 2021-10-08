@@ -11,7 +11,7 @@
             corporis?
           </p>
         </div>
-        <form @submit.prevent="register">
+        <form method="post" @submit.prevent="register">
           <div class="input-div">
             <label for="" class="active">Name</label>
             <input v-model="user.name" type="text" name="name" />
@@ -36,7 +36,7 @@
               <span v-else><i class="bi bi-eye-slash"></i></span>
             </button>
           </div>
-          <button type="submit" class="btn">Become An Author</button>
+          <button type="submit" class="btn fill-btn">Become An Author</button>
         </form>
       </div>
     </div>
