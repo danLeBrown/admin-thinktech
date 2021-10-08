@@ -5,7 +5,7 @@
  */
 import axios from 'axios'
 const Api = axios.create({
-  baseURL: 'https://thinktech.fuoye360.com/api',
+  baseURL: 'https://api-thinktech.herokuapp.com/',
 })
 Api.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 Api.defaults.withCredentials = true

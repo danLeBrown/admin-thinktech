@@ -20,7 +20,13 @@
         "titleBar.activeBackground": "#0864b7",
         "titleBar.activeForeground": "#e7e7e7",
         "titleBar.inactiveBackground": "#0864b799",
-        "titleBar.inactiveForeground": "#e7e7e799"
+        "titleBar.inactiveForeground": "#e7e7e799",
+        "editorGroup.border": "#0a7fe8",
+        "panel.border": "#0a7fe8",
+        "sash.hoverBorder": "#0a7fe8",
+        "sideBar.border": "#0a7fe8",
+        "statusBarItem.remoteBackground": "#0864b7",
+        "statusBarItem.remoteForeground": "#e7e7e7"
     },
     "peacock.color": "#0864b7",
       "eslint.workingDirectories": [{"mode": "auto"}]

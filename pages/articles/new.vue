@@ -84,114 +84,14 @@ export default {
     }
   },
   async mounted() {
-    let editor
-    if (this.$route.query.edit === 'true') {
+    let body = null
+    if (this.$route.query.edit) {
       await this.getArticle(this.$route.query.title)
       this.title = this.article.body.title
-      editor = new EditorJS({
-        /** * Id of Element that should contain the Editor
-         */ holder: 'editorjs',
-        /** * Available Tools list. * Pass Tool's class or
-Settings object for each Tool you want to use */
-        tools: {
-          quote: {
-            class: Quote,
-            inlineToolbar: true,
-            shortcut: 'CMD+SHIFT+O',
-            config: {
-              quotePlaceholder: 'Enter a quote',
-              captionPlaceholder: "Quote's author",
-            },
-          },
-          header: {
-            class: Header,
-            config: {
-              placeholder: 'Enter a header',
-              levels: [2, 3, 4],
-              defaultLevel: 3,
-            },
-            inlineToolbar: ['link'],
-          },
-
-          list: { class: List, inlineToolbar: true },
-          embed: {
-            class: Embed,
-            config: { services: { youtube: true, coub: true } },
-            inlineToolbar: true,
-          },
-          checklist: { class: Checklist, inlineToolbar: true },
-          image: {
-            class: ImageTool,
-            config: {
-              endpoints: {
-                byFile: 'https://thinktech.fuoye360.com/api/articles/image', // Your backend file uploader endpoint
-                byUrl: 'https://thinktech.fuoye360.com/api/fetchUrl', // Your endpoint that provides uploading by Url
-              },
-            },
-          },
-          // image: SimpleImage,
-          linkTool: {
-            class: LinkTool,
-            config: {
-              endpoint: 'https://thinktech.fuoye360.com/fetchUrl', // Your backend endpoint for url data fetching
-            },
-          },
-        },
-        data: this.article.body,
-      })
       this.title = this.article.title
-    } else {
-      editor = new EditorJS({
-        /** * Id of Element that should contain the Editor
-         */ holder: 'editorjs',
-        /** * Available Tools list. * Pass Tool's class or
-Settings object for each Tool you want to use */
-        tools: {
-          quote: {
-            class: Quote,
-            inlineToolbar: true,
-            shortcut: 'CMD+SHIFT+O',
-            config: {
-              quotePlaceholder: 'Enter a quote',
-              captionPlaceholder: "Quote's author",
-            },
-          },
-          header: {
-            class: Header,
-            config: {
-              placeholder: 'Enter a header',
-              levels: [2, 3, 4],
-              defaultLevel: 3,
-            },
-            inlineToolbar: ['link'],
-          },
-
-          list: { class: List, inlineToolbar: true },
-          embed: {
-            class: Embed,
-            config: { services: { youtube: true, coub: true } },
-            inlineToolbar: true,
-          },
-          checklist: { class: Checklist, inlineToolbar: true },
-          image: {
-            class: ImageTool,
-            config: {
-              endpoints: {
-                byFile: 'https://thinktech.fuoye360.com/api/articles/image', // Your backend file uploader endpoint
-                byUrl: 'https://thinktech.fuoye360.com/api/fetchUrl', // Your endpoint that provides uploading by Url
-              },
-            },
-          },
-          // image: SimpleImage,
-          linkTool: {
-            class: LinkTool,
-            config: {
-              endpoint: 'https://thinktech.fuoye360.com/fetchUrl', // Your backend endpoint for url data fetching
-            },
-          },
-        },
-      })
+      body = this.article.body
     }
+    const editor = this.setupEditorJS(body)
     document.querySelector('#editor-form').addEventListener('submit', () => {
       editor
         .save()
@@ -201,11 +101,78 @@ Settings object for each Tool you want to use */
           this.saveArticle(output)
         })
         .catch((err) => {
+          // eslint-disable-next-line no-console
           console.error(err)
         })
     })
   },
   methods: {
+    setupEditorJS(body) {
+      return new EditorJS({
+        /** * Id of Element that should contain the Editor */
+        holder: 'editorjs',
+        /** * Available Tools list. * Pass Tool's class or Settings object for each Tool you want to use */
+        tools: {
+          quote: {
+            class: Quote,
+            inlineToolbar: true,
+            shortcut: 'CMD+SHIFT+O',
+            config: {
+              quotePlaceholder: 'Enter a quote',
+              captionPlaceholder: "Quote's author",
+            },
+          },
+          header: {
+            class: Header,
+            config: {
+              placeholder: 'Enter a header',
+              levels: [2, 3, 4],
+              defaultLevel: 3,
+            },
+            inlineToolbar: ['link'],
+          },
+
+          list: { class: List, inlineToolbar: true },
+          embed: {
+            class: Embed,
+            config: { services: { youtube: true, coub: true } },
+            inlineToolbar: true,
+          },
+          checklist: { class: Checklist, inlineToolbar: true },
+          image: {
+            class: ImageTool,
+            config: {
+              endpoints: {
+                byFile: 'https://thinktech.fuoye360.com/api/articles/image', // Your backend file uploader endpoint
+                byUrl: 'https://thinktech.fuoye360.com/api/fetchUrl', // Your endpoint that provides uploading by Url
+              },
+            },
+          },
+          // image: SimpleImage,
+          linkTool: {
+            class: LinkTool,
+            config: {
+              endpoint: 'https://thinktech.fuoye360.com/fetchUrl', // Your backend endpoint for url data fetching
+            },
+          },
+        },
+        data: body,
+        onPaste(event) {
+          switch (event.type) {
+            case 'tag':
+              this.handleHTMLPaste(event.detail.data)
+              break
+            case 'pattern':
+              this.handlePatternPaste(event.detail.key, event.detail.data)
+              break
+
+            case 'file':
+              this.handleFilePaste(event.detail.file)
+              break
+          }
+        },
+      })
+    },
     saveArticle(output) {
       if (this.$route.query.edit === 'true') {
         output.id = this.article.id
@@ -228,6 +195,7 @@ Settings object for each Tool you want to use */
           return true
         })
         .catch((err) => {
+          // eslint-disable-next-line no-console
           console.log(err)
           // this.$root.$emit('alertNotification', err.response.status)
         })

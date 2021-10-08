@@ -179,9 +179,7 @@ export default {
           this.$root.$emit('setSimilarArticles', res.data.data.similar_articles)
           return true
         })
-        .catch((err) => {
-          console.log(err)
-        })
+        .catch()
     },
     setupPage() {
       const json = this.article.body
@@ -216,6 +214,7 @@ export default {
       })
       this.content = html
       this.imgurl = imgurl
+      // eslint-disable-next-line no-console
       return console.log('html: ', html)
     },
   },
@@ -263,9 +262,6 @@ export default {
   max-width: 920px;
   line-height: 1.6rem;
   padding: 0 0.25rem;
-}
-.post-article {
-  /* border-bottom: 1px solid var(--light-grey); */
 }
 .post-article p {
   margin-bottom: 1rem;
