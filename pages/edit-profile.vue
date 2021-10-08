@@ -37,10 +37,6 @@
             <label for="" class="active">Name</label>
             <input v-model="user.name" type="text" name="name" />
           </div>
-          <!-- <div class="input-div">
-            <label for="">Email</label>
-            <input v-model="user.email" type="email" disabled />
-          </div> -->
           <div class="input-div">
             <label for="" class="active">Bio</label>
             <textarea
@@ -152,12 +148,6 @@ export default {
 </script>
 
 <style scoped>
-.flex-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-}
-
 .img-div {
   border-radius: 50%;
   width: 200px;

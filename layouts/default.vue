@@ -2,8 +2,16 @@
   <div>
     <v-app id="app-wrapper">
       <v-main>
-        <v-container id="app-container">
-          <NavbarComponent id="nav-component" />
+        <v-container
+          class="app-container"
+          :class="
+            ['create-account'].includes($route.name) ? 'hide-nav' : 'show-nav'
+          "
+        >
+          <NavbarComponent
+            v-if="!['create-account'].includes($route.name)"
+            id="nav-component"
+          />
           <div></div>
           <RouterView id="router-view" />
         </v-container>
@@ -22,10 +30,14 @@ export default {
 </script>
 
 <style scoped>
-#app-container {
+.app-container {
   display: grid;
-  grid-template-columns: 20% 80%;
   width: 100%;
+  grid-gap: 1rem;
+}
+
+.show-nav {
+  grid-template-columns: 20% 80%;
 }
 #nav-component {
   flex: 2;

@@ -25,6 +25,7 @@
     "jquery": "^3.6.0",
     "nuxt": "^2.15.3",
     "vue-editor-js": "^2.0.2",
+    "vue-google-oauth2": "^1.5.8",
     "vue-infinite-loading": "^2.4.5",
     "vue-slick-carousel": "^1.0.6"
   },

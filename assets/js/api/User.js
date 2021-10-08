@@ -9,6 +9,11 @@ export default {
       },
     })
   },
+  async register(formData) {
+    await Csrf.getCookie()
+    return Api.post('/register', formData)
+  },
+
   async stats() {
     await Csrf.getCookie()
     return Api.get('/author/analytics-stats')
