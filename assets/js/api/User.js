@@ -9,6 +9,7 @@ export default {
       },
     })
   },
+
   async register(formData) {
     await Csrf.getCookie()
     return Api.post('/register', formData)

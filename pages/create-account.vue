@@ -11,7 +11,7 @@
             corporis?
           </p>
         </div>
-        <form action="">
+        <form @submit.prevent="register">
           <div class="input-div">
             <label for="" class="active">Name</label>
             <input v-model="user.name" type="text" name="name" />
