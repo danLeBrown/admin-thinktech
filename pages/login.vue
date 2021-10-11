@@ -3,7 +3,7 @@
     <div class="form-container">
       <div class="flex-container">
         <div style="justify-self: center">
-          <h1>Become an author on ThinkTech!</h1>
+          <h1>Resume writing great articles on ThinkTech!</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio, ab
             excepturi maxime, laudantium eum minus rerum delectus reiciendis
@@ -11,11 +11,7 @@
             corporis?
           </p>
         </div>
-        <form method="post" @submit.prevent="register">
-          <div class="input-div">
-            <label for="" class="active">Name</label>
-            <input v-model="user.name" type="text" name="name" />
-          </div>
+        <form method="post" @submit.prevent="login">
           <div class="input-div">
             <label for="" class="active">Email</label>
             <input v-model="user.email" type="email" name="email" />
@@ -36,7 +32,7 @@
               <span v-else><i class="bi bi-eye-slash"></i></span>
             </button>
           </div>
-          <nuxt-link to="/login">Already have an account?</nuxt-link>
+          <nuxt-link to="/login">Don't have an account yet?</nuxt-link>
           <div class="input-div">
             <button
               type="submit"
@@ -63,12 +59,11 @@
 <script>
 import User from '~/assets/js/api/User'
 export default {
-  name: 'CreateAccount',
+  name: 'Login',
   data() {
     return {
       loading: false,
       user: {
-        name: '',
         email: '',
         password: '',
       },
@@ -81,9 +76,9 @@ export default {
     togglePasswordState() {
       return (this.password.show = !this.password.show)
     },
-    async register() {
+    async login() {
       this.loading = true
-      await User.register(this.user)
+      await User.login(this.user)
         .then(async (res) => {
           localStorage.setItem(
             'admin_thinktech_auth_token',

@@ -5,11 +5,13 @@
         <v-container
           class="app-container"
           :class="
-            ['create-account'].includes($route.name) ? 'hide-nav' : 'show-nav'
+            ['create-account', 'login'].includes($route.name)
+              ? 'hide-nav'
+              : 'show-nav'
           "
         >
           <NavbarComponent
-            v-if="!['create-account'].includes($route.name)"
+            v-if="!['create-account', 'login'].includes($route.name)"
             id="nav-component"
           />
           <div></div>
@@ -39,7 +41,7 @@ export default {
     return await User.getCurrent()
       .then(async (res) => {
         await this.$store.dispatch('user/storeUser', res.data.data.user)
-        console.log(this.user)
+        // console.log(this.user)
         if (this.user.role.role !== 'author') {
           return this.$router.push('/create-account')
         }

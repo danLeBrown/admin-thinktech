@@ -11,7 +11,7 @@ export default {
     //     return new Promise(resolve => {
     //         resolve(_token);
     //     });
-    // }
     return Api.get('/csrf-cookie')
   },
+  // }
 }

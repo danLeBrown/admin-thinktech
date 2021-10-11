@@ -11,12 +11,14 @@ export default {
       },
     })
   },
-
   async register(formData) {
     await Csrf.getCookie()
     return Api.post('/register', formData)
   },
-
+  async login(formData) {
+    await Csrf.getCookie()
+    return Api.post('/login', formData)
+  },
   async stats() {
     await Csrf.getCookie()
     return Api.get('/author/analytics-stats', {
@@ -24,7 +26,6 @@ export default {
         'Bearer ' + localStorage.getItem('admin_thinktech_auth_token'),
     })
   },
-
   async getCurrent() {
     await Csrf.getCookie()
     return Api.get('/user', {
