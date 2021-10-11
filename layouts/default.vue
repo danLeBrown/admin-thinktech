@@ -40,7 +40,7 @@ export default {
       .then(async (res) => {
         await this.$store.dispatch('user/storeUser', res.data.data.user)
         console.log(this.user)
-        if (this.user.role !== 'author') {
+        if (this.user.role.role !== 'author') {
           return this.$router.push('/create-account')
         }
       })
