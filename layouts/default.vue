@@ -37,8 +37,9 @@ export default {
   },
   async beforeCreate() {
     return await User.getCurrent()
-      .then((res) => {
-        this.$store.dispatch('user/storeUser', res.data.data.user)
+      .then(async (res) => {
+        await this.$store.dispatch('user/storeUser', res.data.data.user)
+        console.log(this.user)
         if (this.user.role !== 'author') {
           return this.$router.push('/create-account')
         }
