@@ -34,7 +34,8 @@
           </div>
           <nuxt-link
             :to="
-              '/create-account' + $route.query.redirect !== undefined
+              '/create-account' +
+              ![undefined, null, ''].includes($route.query.redirect)
                 ? '?redirect=' + $route.query.redirect
                 : ''
             "

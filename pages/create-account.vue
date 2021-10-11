@@ -38,7 +38,7 @@
           </div>
           <nuxt-link
             :to="
-              '/login' + $route.query.redirect !== undefined
+              '/login' + ![undefined, null, ''].includes($route.query.redirect)
                 ? '?redirect=' + $route.query.redirect
                 : ''
             "
