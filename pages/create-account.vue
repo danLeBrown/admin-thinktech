@@ -38,9 +38,9 @@
           </div>
           <nuxt-link
             :to="
-              '/login' + ![undefined, null, ''].includes($route.query.redirect)
-                ? '?redirect=' + $route.query.redirect
-                : ''
+              ![undefined, null, ''].includes($route.query.redirect)
+                ? '/login?redirect=' + $route.query.redirect
+                : '/login'
             "
             >Already have an account yet?</nuxt-link
           >
