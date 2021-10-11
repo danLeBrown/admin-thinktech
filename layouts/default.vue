@@ -14,6 +14,7 @@
           />
           <div></div>
           <RouterView id="router-view" />
+          <AlertComponent />
         </v-container>
       </v-main>
     </v-app>
@@ -21,10 +22,30 @@
 </template>
 <script>
 import NavbarComponent from '~/components/includes/NavbarComponent'
+import AlertComponent from '~/components/includes/AlertComponent'
+import User from '~/assets/js/api/User'
 export default {
   name: 'Default',
   components: {
     NavbarComponent,
+    AlertComponent,
+  },
+  computed: {
+    user() {
+      return this.$store.state.user.user
+    },
+  },
+  async beforeCreate() {
+    return await User.getCurrent()
+      .then((res) => {
+        this.$store.dispatch('user/storeUser', res.data.data.user)
+        if (this.user.role !== 'author') {
+          return this.$router.push('/create-account')
+        }
+      })
+      .catch(() => {
+        return this.$router.push('/create-account')
+      })
   },
 }
 </script>

@@ -16,9 +16,12 @@
               <i class="bi bi-camera-fill" @click="triggerclick"></i>
             </button>
           </div>
-          <div>
+          <div align="center">
             <br />
-            <h4><i class="bi bi-calendar-event"></i> Created on:</h4>
+            <h4>
+              <i class="bi bi-calendar-event"></i>
+              {{ user.relative_at }}
+            </h4>
           </div>
         </div>
         <form
@@ -48,7 +51,7 @@
             ></textarea>
           </div>
           <button
-            class="fill-btn"
+            class="btn fill-btn"
             :class="loading ? 'loading-btn' : ''"
             type="submit"
             name="login-btn"

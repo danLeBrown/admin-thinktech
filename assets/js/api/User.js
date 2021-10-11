@@ -6,6 +6,8 @@ export default {
     return Api.post('/account/update-profile', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
+        Authorization:
+          'Bearer ' + localStorage.getItem('admin_thinktech_auth_token'),
       },
     })
   },
@@ -17,11 +19,17 @@ export default {
 
   async stats() {
     await Csrf.getCookie()
-    return Api.get('/author/analytics-stats')
+    return Api.get('/author/analytics-stats', {
+      Authorization:
+        'Bearer ' + localStorage.getItem('admin_thinktech_auth_token'),
+    })
   },
 
   async getCurrent() {
     await Csrf.getCookie()
-    return Api.get('/user')
+    return Api.get('/user', {
+      Authorization:
+        'Bearer ' + localStorage.getItem('admin_thinktech_auth_token'),
+    })
   },
 }

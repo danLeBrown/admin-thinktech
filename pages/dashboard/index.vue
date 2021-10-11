@@ -93,10 +93,12 @@ export default {
   },
   methods: {
     setup() {
-      User.stats().then((res) => {
-        this.analytics_stats = res.data.data
-        this.loading = false
-      })
+      User.stats()
+        .then((res) => {
+          this.analytics_stats = res.data.data
+          this.loading = false
+        })
+        .catch((err) => this.$store.dispatch('alert/getAlert', err.response))
     },
   },
 }

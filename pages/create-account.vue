@@ -36,7 +36,21 @@
               <span v-else><i class="bi bi-eye-slash"></i></span>
             </button>
           </div>
-          <button type="submit" class="btn fill-btn">Become An Author</button>
+          <button
+            type="submit"
+            class="btn fill-btn"
+            :class="loading ? 'loading-btn' : ''"
+          >
+            <span v-if="loading"
+              ><v-progress-circular
+                indeterminate
+                color="white"
+                width="3"
+                size="20"
+              ></v-progress-circular
+            ></span>
+            <span v-else> Become An Author </span>
+          </button>
         </form>
       </div>
     </div>
@@ -49,6 +63,7 @@ export default {
   name: 'CreateAccount',
   data() {
     return {
+      loading: false,
       user: {
         name: '',
         email: '',
@@ -65,10 +80,17 @@ export default {
     },
     async register() {
       this.loading = true
-      await User.register(this.user).then(async () => {
-        await this.$store.dispatch('user/getUser')
-        this.$router.push('/dashboard')
-      })
+      await User.register(this.user)
+        .then(async (res) => {
+          localStorage.setItem(
+            'admin_thinktech_auth_token',
+            res.data.data.token
+          )
+          this.$store.dispatch('alert/getAlert', res)
+          await this.$store.dispatch('user/getUser')
+          this.$router.push('/dashboard')
+        })
+        .catch((err) => this.$store.dispatch('alert/getAlert', err.response))
       this.loading = false
     },
   },
