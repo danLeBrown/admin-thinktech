@@ -82,6 +82,7 @@
 import User from '~/assets/js/api/User'
 export default {
   name: 'Index',
+  middleware: ['auth'],
   data() {
     return {
       analytics_stats: {},

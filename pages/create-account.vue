@@ -36,7 +36,14 @@
               <span v-else><i class="bi bi-eye-slash"></i></span>
             </button>
           </div>
-          <nuxt-link to="/login">Already have an account?</nuxt-link>
+          <nuxt-link
+            :to="
+              '/login' + $route.query.redirect !== undefined
+                ? '?redirect=' + $route.query.redirect
+                : ''
+            "
+            >Already have an account yet?</nuxt-link
+          >
           <div class="input-div">
             <button
               type="submit"
@@ -91,9 +98,15 @@ export default {
           )
           this.$store.dispatch('alert/getAlert', res)
           await this.$store.dispatch('user/getUser')
-          this.$router.push('/dashboard')
+          if (this.$route.query.redirect !== undefined) {
+            return this.$router.push(this.$route.query.redirect)
+          } else {
+            return this.$router.push('/dashboard')
+          }
         })
-        .catch((err) => this.$store.dispatch('alert/getAlert', err.response))
+        .catch((err) => {
+          return this.$store.dispatch('alert/getAlert', err.response)
+        })
       this.loading = false
     },
   },

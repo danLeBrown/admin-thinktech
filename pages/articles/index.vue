@@ -17,6 +17,7 @@ export default {
   components: {
     ArticlesComponent,
   },
+  middleware: ['auth'],
   data() {
     return {}
   },

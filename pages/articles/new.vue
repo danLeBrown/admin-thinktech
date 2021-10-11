@@ -75,6 +75,7 @@ import LinkTool from '@editorjs/link'
 import Article from '~/assets/js/api/Article'
 export default {
   name: 'New',
+  middleware: ['auth'],
   data() {
     return {
       editor: {},

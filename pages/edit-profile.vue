@@ -77,6 +77,7 @@ import $ from 'jquery'
 // import User from '~/assets/js/api/User'
 export default {
   name: 'EditProfile',
+  middleware: ['auth'],
   data() {
     return {
       loading: false,
