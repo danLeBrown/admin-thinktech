@@ -179,15 +179,23 @@ export default {
       if (this.$route.query.edit === 'true') {
         output.id = this.article.id
         output.edit = true
-        return Article.create(output).then(() => {
+        return Article.create(output)
+          .then(() => {
+            this.loading = false
+            this.$router.push({ name: 'articles' })
+          })
+          .catch((err) => {
+            return this.$store.dispatch('alert/getAlert', err.response)
+          })
+      }
+      return Article.create(output)
+        .then(() => {
           this.loading = false
           this.$router.push({ name: 'articles' })
         })
-      }
-      return Article.create(output).then(() => {
-        this.loading = false
-        this.$router.push({ name: 'articles' })
-      })
+        .catch((err) => {
+          return this.$store.dispatch('alert/getAlert', err.response)
+        })
     },
     getArticle(title) {
       return Article.getTitle(title)
@@ -197,9 +205,7 @@ export default {
           return true
         })
         .catch((err) => {
-          // eslint-disable-next-line no-console
-          console.log(err)
-          // this.$root.$emit('alertNotification', err.response.status)
+          return this.$store.dispatch('alert/getAlert', err.response)
         })
     },
   },
