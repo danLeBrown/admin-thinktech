@@ -33,7 +33,7 @@
               <div class="mb-0 postcard-time">
                 <span
                   ><b
-                    ><i class="bi bi-clock"></i> {{ article.timeago }}</b
+                    ><i class="bi bi-clock"></i> {{ article.relative_at }}</b
                   ></span
                 >
                 <span> &dash; </span>

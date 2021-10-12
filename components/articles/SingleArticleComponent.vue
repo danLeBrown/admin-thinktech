@@ -36,7 +36,7 @@
           <span
             ><b
               ><i class="bi bi-clock"></i>
-              {{ d_article.timeago }}
+              {{ d_article.relative_at }}
             </b></span
           >
           <!-- <span> &dash; </span>
