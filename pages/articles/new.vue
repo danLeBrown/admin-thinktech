@@ -180,8 +180,9 @@ export default {
         output.id = this.article.id
         output.edit = true
         return Article.create(output)
-          .then(() => {
+          .then((res) => {
             this.loading = false
+            this.$store.dispatch('success/getAlert', res)
             this.$router.push({ name: 'articles' })
           })
           .catch((err) => {
@@ -189,8 +190,9 @@ export default {
           })
       }
       return Article.create(output)
-        .then(() => {
+        .then((res) => {
           this.loading = false
+          this.$store.dispatch('success/getAlert', res)
           this.$router.push({ name: 'articles' })
         })
         .catch((err) => {
