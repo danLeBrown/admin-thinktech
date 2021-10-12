@@ -61,22 +61,22 @@ export default {
       return this.fetchAuthor()
     },
   },
-  mounted() {
-    this.$root.$on('setSimilarArticles', (data) => {
-      this.articles = data
-      this.loading = false
-    })
-    this.$root.$on('authorUpdated', () => {
-      this.fetchAuthor()
-    })
+  // mounted() {
+  //   this.$root.$on('setSimilarArticles', (data) => {
+  //     this.articles = data
+  //     this.loading = false
+  //   })
+  //   this.$root.$on('authorUpdated', () => {
+  //     this.fetchAuthor()
+  //   })
 
-    this.$root.$on('articleDeleted', (id) => {
-      this.articles = this.articles.filter((article) => article.id !== id)
-    })
-    if (this.$route.name === 'articles') {
-      this.fetchAuthor()
-    }
-  },
+  //   this.$root.$on('articleDeleted', (id) => {
+  //     this.articles = this.articles.filter((article) => article.id !== id)
+  //   })
+  //   if (this.$route.name === 'articles') {
+  //     this.fetchAuthor()
+  //   }
+  // },
   methods: {
     // fetchPosts() {
     //   return Article.getArticles()
@@ -86,14 +86,14 @@ export default {
     //     .catch(() => {})
     // },
     fetchAuthor() {
-      if (!['', null, undefined, {}].includes(this.author)) {
-        Article.getAuthor(this.author.id)
-          .then((res) => {
-            this.articles = res.data.data
-            return (this.loading = false)
-          })
-          .catch(() => {})
-      }
+      Article.getAuthor(this.author.id)
+        .then((res) => {
+          this.articles = res.data.data
+          return (this.loading = false)
+        })
+        .catch((err) => {
+          return this.$store.dispatch('alert/getAlert', err.response)
+        })
     },
     fetchTag() {
       return Article.getTag(this.$route.params.tag)
@@ -101,7 +101,9 @@ export default {
           this.articles = res.data.data
           this.loading = false
         })
-        .catch(() => {})
+        .catch((err) => {
+          return this.$store.dispatch('alert/getAlert', err.response)
+        })
     },
   },
 }
