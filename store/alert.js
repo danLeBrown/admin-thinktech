@@ -1,18 +1,13 @@
 const state = () => ({
   errors: [],
-  success: [],
 })
 
 const getters = {
   errors: (state) => state.errors,
-  success: (state) => state.success,
 }
 
 const actions = {
   getAlert: ({ commit }, res) => {
-    if ([200, 201].includes(res.status)) {
-      return commit('pushMessage', res.data.data.message)
-    }
     if (res.status === 500) {
       return commit('pushError', 'Oops! An error occured from our end.')
     }

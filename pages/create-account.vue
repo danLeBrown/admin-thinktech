@@ -96,7 +96,7 @@ export default {
             'admin_thinktech_auth_token',
             res.data.data.token
           )
-          this.$store.dispatch('alert/getAlert', res)
+          this.$store.dispatch('success/getAlert', res)
           await this.$store.dispatch('user/getUser')
           if (this.$route.query.redirect !== undefined) {
             return this.$router.push(this.$route.query.redirect)
