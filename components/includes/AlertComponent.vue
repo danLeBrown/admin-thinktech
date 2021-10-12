@@ -38,7 +38,7 @@ export default {
       return this.$store.state.alert.errors
     },
     success() {
-      return this.$store.state.alert.success
+      return this.$store.state.success.success
     },
   },
   watch: {},

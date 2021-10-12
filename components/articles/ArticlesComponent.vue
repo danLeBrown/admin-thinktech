@@ -49,8 +49,17 @@ export default {
     return {
       loading: true,
       articles: [],
-      author: {},
     }
+  },
+  computed: {
+    author() {
+      return this.$store.state.user.user
+    },
+  },
+  watch: {
+    author() {
+      return this.fetchAuthor()
+    },
   },
   mounted() {
     this.$root.$on('setSimilarArticles', (data) => {
@@ -69,15 +78,14 @@ export default {
     }
   },
   methods: {
-    fetchPosts() {
-      return Article.getArticles()
-        .then((res) => {
-          this.articles = res.data.data
-        })
-        .catch(() => {})
-    },
-    async fetchAuthor() {
-      await this.getAuthor()
+    // fetchPosts() {
+    //   return Article.getArticles()
+    //     .then((res) => {
+    //       this.articles = res.data.data
+    //     })
+    //     .catch(() => {})
+    // },
+    fetchAuthor() {
       if (!['', null, undefined, {}].includes(this.author)) {
         Article.getAuthor(this.author.id)
           .then((res) => {
@@ -86,9 +94,6 @@ export default {
           })
           .catch(() => {})
       }
-    },
-    getAuthor() {
-      return (this.author = this.$store.state.user.user)
     },
     fetchTag() {
       return Article.getTag(this.$route.params.tag)
