@@ -62,7 +62,7 @@ export default {
     },
   },
   mounted() {
-    if (this.user.is_ready) {
+    if (this.author.is_ready) {
       return this.fetchAuthor()
     }
   },
