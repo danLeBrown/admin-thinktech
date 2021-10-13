@@ -10,10 +10,11 @@ const actions = {
   getAlert: ({ commit }, res) => {
     if (res.status === 500) {
       return commit('pushError', 'Oops! An error occured from our end.')
+    } else {
+      Object.keys(res.data.errors).forEach((key) => {
+        return commit('pushError', res.data.errors[key][0])
+      })
     }
-    Object.keys(res.data.errors).forEach((key) => {
-      return commit('pushError', res.data.errors[key][0])
-    })
   },
 }
 
