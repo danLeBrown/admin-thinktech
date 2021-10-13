@@ -1,6 +1,8 @@
 import User from '~/assets/js/api/User'
 const state = () => ({
-  user: {},
+  user: {
+    is_ready: false,
+  },
 })
 
 const getters = {
@@ -23,6 +25,7 @@ const actions = {
 
 const mutations = {
   setUser: (state, user) => {
+    user.is_ready = true
     return (state.user = user)
   },
 }

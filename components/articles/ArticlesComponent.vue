@@ -61,6 +61,11 @@ export default {
       return this.fetchAuthor()
     },
   },
+  mounted() {
+    if (this.user.is_ready) {
+      return this.fetchAuthor()
+    }
+  },
   // mounted() {
   //   this.$root.$on('setSimilarArticles', (data) => {
   //     this.articles = data

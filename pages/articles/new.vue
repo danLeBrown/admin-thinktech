@@ -55,7 +55,7 @@
           ></span>
           <span v-else
             ><i class="bi bi-save"></i>
-            SAVE
+            PUBLISH
           </span>
         </button>
       </div>
