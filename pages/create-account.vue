@@ -98,7 +98,7 @@ export default {
           )
           this.$store.dispatch('success/getAlert', res)
           await this.$store.dispatch('user/getUser')
-          if (this.$route.query.redirect !== undefined) {
+          if (![undefined, null, ''].includes(this.$route.query.redirect)) {
             return this.$router.push(this.$route.query.redirect)
           } else {
             return this.$router.push('/dashboard')
