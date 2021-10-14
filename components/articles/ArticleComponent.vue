@@ -39,22 +39,14 @@
                 <span> &dash; </span>
                 <span> 2 mins read </span>
               </div>
-              <div
-                class="postcard-author-div p-0"
-                @click="
-                  setAuthor(
-                    article.author,
-                    `/author/${article.meta.author_link}`
-                  )
-                "
-              >
+              <nuxt-link to="/articles" class="postcard-author-div p-0">
                 <img
                   :src="article.author.image_url"
                   :alt="article.author.name"
                   class="postcard-author-img"
                 />
                 <h5 class="post-author">{{ article.author.name }}</h5>
-              </div>
+              </nuxt-link>
             </div>
           </div>
           <div class="postcard-img-div">
@@ -150,9 +142,8 @@ export default {
     })
   },
   methods: {
-    async setAuthor(author, link) {
-      await this.$store.commit('author/setAuthor', author)
-      this.$router.push(link)
+    setAuthor(author, link) {
+      return this.$router.push('/articles')
     },
     getArticle(title) {
       return Article.getTitle(title)
