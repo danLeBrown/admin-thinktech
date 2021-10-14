@@ -51,7 +51,6 @@ export default {
           return this.$router.push('/dashboard')
         }
       }
-      return true
     })
   },
   async beforeCreate() {

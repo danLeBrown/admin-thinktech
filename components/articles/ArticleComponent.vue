@@ -108,7 +108,7 @@
               <h6>Written by</h6>
               <h4 class="post-author">{{ article.author.name }}</h4>
               <p>
-                {{ author.bio }}
+                {{ article.author.bio }}
               </p>
             </div>
           </div>
