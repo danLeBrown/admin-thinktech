@@ -110,7 +110,7 @@ export default {
     },
     async editProfile(e) {
       this.loading = true
-      await User.updateProfile(new FormData(e.target))
+      await User.update(new FormData(e.target))
         .then((res) => {
           this.$store.dispatch('user/updateCurrentUser', res.data.data.user)
           this.$store.dispatch('success/getAlert', res)

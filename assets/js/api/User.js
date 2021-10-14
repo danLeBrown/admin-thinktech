@@ -3,7 +3,7 @@ import Csrf from './Csrf'
 export default {
   async update(formData) {
     await Csrf.getCookie()
-    return Api.post('/account/update-profile', formData, {
+    return Api.post('/author/update-profile', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         Authorization:
