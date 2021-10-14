@@ -87,7 +87,7 @@ export default {
       this.loading = true
       await User.login(this.user)
         .then(async (res) => {
-          localStorage.setItem(
+          await localStorage.setItem(
             'admin_thinktech_auth_token',
             res.data.data.token
           )
