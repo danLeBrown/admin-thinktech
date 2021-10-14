@@ -110,16 +110,19 @@ export default {
     },
     async editProfile(e) {
       this.loading = true
-      await this.$store.dispatch(
+      // await 
+      await User.updateProfile(new FormData(e.target))
+        .then((res) => {
+          this.$store.dispatch(
         'user/updateCurrentUser',
-        new FormData(e.target)
-      )
+        res.data.data.user
+      )        .catch((err) => {
+          return this.$store.dispatch('alert/getAlert', err.response)
+        })
+
       this.loading = false
-      // User.updateProfile(new FormData(e.target))
-      //   .then(() => {
-      //     this.$root.$emit('alertNotification', { message: 'Profile Updated' })
-      //   })
-      //   .catch((err) => {})
+          this.$root.$emit('alertNotification', { message: 'Profile Updated' })
+        })
     },
     async displayImage(data) {
       if (data.target.files[0]) {
