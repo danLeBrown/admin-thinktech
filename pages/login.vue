@@ -86,13 +86,13 @@ export default {
     async login() {
       this.loading = true
       await User.login(this.user)
-        .then(async (res) => {
-          await localStorage.setItem(
+        .then((res) => {
+          localStorage.setItem(
             'admin_thinktech_auth_token',
             res.data.data.token
           )
           this.$store.dispatch('success/getAlert', res)
-          await this.$store.dispatch('user/getUser')
+          this.$store.dispatch('user/getUser')
           if (![undefined, null, ''].includes(this.$route.query.redirect)) {
             return this.$router.push(this.$route.query.redirect)
           } else {
