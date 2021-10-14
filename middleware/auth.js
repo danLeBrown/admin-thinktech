@@ -3,8 +3,6 @@ function isLoggedIn() {
 }
 
 export default function ({ store, redirect, route }) {
-  /* eslint no-console: ["error", { allow: ["warn", "error", "log"] }] */
-  // console.log(store)
   if (!isLoggedIn()) {
     return redirect({
       name: 'login',

@@ -1,7 +1,7 @@
-import User from '~/assets/js/api/User'
 const state = () => ({
   user: {
     is_ready: false,
+    auth: false,
   },
 })
 
@@ -13,19 +13,22 @@ const actions = {
   updateCurrentUser: ({ commit }, user) => {
     return commit('setUser', user)
   },
-  getUser: async ({ commit }, formData) => {
-    const res = await User.getCurrent()
-    return commit('setUser', res.data.data.user)
-  },
   storeUser: ({ commit }, data) => {
     return commit('setUser', data)
+  },
+  changeAuth: ({ commit }) => {
+    return commit('setUserAuth')
   },
 }
 
 const mutations = {
   setUser: (state, user) => {
     user.is_ready = true
+    user.auth = true
     return (state.user = user)
+  },
+  setUserAuth: (state) => {
+    return (state.user.auth = true)
   },
 }
 
