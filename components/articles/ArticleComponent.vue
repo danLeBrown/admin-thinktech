@@ -116,10 +116,7 @@
               <h6>Written by</h6>
               <h4 class="post-author">{{ article.author.name }}</h4>
               <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Consequuntur, temporibus quaerat? Nisi, culpa error itaque odio
-                earum facilis quidem ullam fuga molestias nostrum, voluptate
-                quis. Autem architecto soluta incidunt modi.
+                {{ user.bio }}
               </p>
             </div>
           </div>
@@ -146,20 +143,6 @@ export default {
       imgurl: [],
       content: '',
     }
-  },
-  computed: {
-    // imgurl() {
-    //   const url = []
-    //   this.article.body.blocks.forEach((block) => {
-    //     switch (block.type) {
-    //       case 'image':
-    //         return url.push(block.data.file.url)
-    //       default:
-    //         break
-    //     }
-    //   })
-    //   return url
-    // },
   },
   mounted() {
     this.getArticle(this.$route.params.title).then(() => {
