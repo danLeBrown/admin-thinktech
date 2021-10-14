@@ -9,12 +9,4 @@ const Api = axios.create({
 })
 Api.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 Api.defaults.withCredentials = true
-if (
-  ![null, undefined].includes(
-    localStorage.getItem('admin_thinktech_auth_token')
-  )
-) {
-  Api.defaults.headers.common.Authorization =
-    'Bearer ' + localStorage.getItem('admin_thinktech_auth_token')
-}
 export default Api

@@ -1,36 +1,28 @@
-import Api from './Api'
+import AuthApi from './AuthApi'
 import Csrf from './Csrf'
 export default {
   async update(formData) {
     await Csrf.getCookie()
-    return Api.post('/author/update-profile', formData, {
+    return AuthApi.post('/author/update-profile', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
-        Authorization:
-          'Bearer ' + localStorage.getItem('admin_thinktech_auth_token'),
       },
     })
   },
   async register(formData) {
-    await Csrf.getCookie()
-    return Api.post('/register', formData)
+    await Csrf.getCookie(true)
+    return AuthApi.post('/register', formData)
   },
   async login(formData) {
-    await Csrf.getCookie()
-    return Api.post('/login', formData)
+    await Csrf.getCookie(true)
+    return AuthApi.post('/login', formData)
   },
   async stats() {
     await Csrf.getCookie()
-    return Api.get('/author/analytics-stats', {
-      Authorization:
-        'Bearer ' + localStorage.getItem('admin_thinktech_auth_token'),
-    })
+    return AuthApi.get('/author/analytics-stats')
   },
   async getCurrent() {
     await Csrf.getCookie()
-    return Api.get('/user', {
-      Authorization:
-        'Bearer ' + localStorage.getItem('admin_thinktech_auth_token'),
-    })
+    return AuthApi.get('/user')
   },
 }
