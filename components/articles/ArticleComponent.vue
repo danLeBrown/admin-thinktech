@@ -15,7 +15,7 @@
         <div class="post-header">
           <div class="post-meta">
             <div class="postcard-text-div">
-              <!-- <div class="mb-4">
+              <!-- <div class="mb-4">user
                 <nuxt-link
                   :to="{
                     name: 'tag-tag',
@@ -108,7 +108,7 @@
               <h6>Written by</h6>
               <h4 class="post-author">{{ article.author.name }}</h4>
               <p>
-                {{ user.bio }}
+                {{ author.bio }}
               </p>
             </div>
           </div>
@@ -173,7 +173,6 @@ export default {
           case 'image':
             imgurl.push(block.data.file.url)
             html += `<img class="img-fluid" src="${block.data.file.url}" title="${block.data.caption}" /><br /><em>${block.data.caption}</em>`
-            // this.imgurl.push(block.data.file.url)
             break
           case 'list':
             html += '<ul>'
@@ -188,8 +187,7 @@ export default {
       })
       this.content = html
       this.imgurl = imgurl
-      // eslint-disable-next-line no-console
-      return console.log('html: ', html)
+      // return console.log('html: ', html)
     },
   },
 }
