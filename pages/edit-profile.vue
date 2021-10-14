@@ -74,7 +74,7 @@
 
 <script>
 import $ from 'jquery'
-// import User from '~/assets/js/api/User'
+import User from '~/assets/js/api/User'
 export default {
   name: 'EditProfile',
   middleware: ['auth'],
@@ -110,19 +110,15 @@ export default {
     },
     async editProfile(e) {
       this.loading = true
-      // await 
       await User.updateProfile(new FormData(e.target))
         .then((res) => {
-          this.$store.dispatch(
-        'user/updateCurrentUser',
-        res.data.data.user
-      )        .catch((err) => {
+          this.$store.dispatch('user/updateCurrentUser', res.data.data.user)
+          this.$store.dispatch('success/getAlert', res)
+        })
+        .catch((err) => {
           return this.$store.dispatch('alert/getAlert', err.response)
         })
-
       this.loading = false
-          this.$root.$emit('alertNotification', { message: 'Profile Updated' })
-        })
     },
     async displayImage(data) {
       if (data.target.files[0]) {

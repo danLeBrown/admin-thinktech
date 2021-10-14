@@ -10,9 +10,7 @@ const getters = {
 }
 
 const actions = {
-  updateCurrentUser: async ({ commit }, user) => {
-    // const res = await User.update(formData)
-
+  updateCurrentUser: ({ commit }, user) => {
     return commit('setUser', user)
   },
   getUser: async ({ commit }, formData) => {
