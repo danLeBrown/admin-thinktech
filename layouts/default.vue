@@ -37,6 +37,23 @@ export default {
       return this.$store.state.user.user
     },
   },
+  mounted() {
+    this.$root.$on('setupAuth', (res) => {
+      localStorage.removeItem('admin_thinktech_auth_token')
+      if (
+        localStorage.setItem('admin_thinktech_auth_token', res.data.data.token)
+      ) {
+        this.$store.dispatch('success/getAlert', res)
+        this.$store.dispatch('user/getUser')
+        if (![undefined, null, ''].includes(this.$route.query.redirect)) {
+          return this.$router.push(this.$route.query.redirect)
+        } else {
+          return this.$router.push('/dashboard')
+        }
+      }
+      return true
+    })
+  },
   async beforeCreate() {
     return await User.getCurrent()
       .then(async (res) => {

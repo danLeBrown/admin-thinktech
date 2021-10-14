@@ -92,17 +92,7 @@ export default {
       this.loading = true
       await User.register(this.user)
         .then((res) => {
-          localStorage.setItem(
-            'admin_thinktech_auth_token',
-            res.data.data.token
-          )
-          this.$store.dispatch('success/getAlert', res)
-          this.$store.dispatch('user/getUser')
-          if (![undefined, null, ''].includes(this.$route.query.redirect)) {
-            return this.$router.push(this.$route.query.redirect)
-          } else {
-            return this.$router.push('/dashboard')
-          }
+          return this.$root.$emit('setupAuth', res)
         })
         .catch((err) => {
           return this.$store.dispatch('alert/getAlert', err.response)
