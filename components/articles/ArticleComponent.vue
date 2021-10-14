@@ -49,7 +49,7 @@
                 "
               >
                 <img
-                  :src="article.author.image"
+                  :src="article.author.image_url"
                   :alt="article.author.name"
                   class="postcard-author-img"
                 />
@@ -107,7 +107,7 @@
           <div class="single-article-author-content">
             <div class="pl-4 pr-4">
               <img
-                :src="article.author.image"
+                :src="article.author.image_url"
                 :alt="'' + article.author.name"
                 class="postcard-author-img"
               />

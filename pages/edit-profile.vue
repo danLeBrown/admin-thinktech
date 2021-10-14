@@ -8,7 +8,11 @@
           <div class="img-div">
             <img
               id="profile-display"
-              :src="require('~/assets/images/about.jpeg')"
+              :src="
+                user.image_url !== null
+                  ? user.image_url
+                  : require('~/assets/images/about.jpeg')
+              "
               :alt="user.name"
               loading="lazy"
             />
