@@ -2,15 +2,11 @@
   <div>
     <div class="aside-container">
       <aside class="mobile-nav">
-        <nuxt-link
-          :to="{ name: 'index' }"
-          class="navbar-title"
-          style="height: 100%; width: 100%"
-        >
-          <!-- <img
+        <nuxt-link :to="{ name: 'dashboard' }" class="navbar-title">
+          <img
             :src="require('~/assets/images/logo.png')"
             class="app-title sm-app-title"
-          /> -->
+          />
         </nuxt-link>
 
         <div class="aside-nav-content nav-container">
@@ -27,13 +23,13 @@
             <nuxt-link to="/edit-profile"
               ><i class="bi bi-person"></i> Profile</nuxt-link
             >
+            <button v-if="!dark" v-ripple @click="darkThemeSwitch">
+              <i class="bi bi-moon"></i>
+            </button>
+            <button v-else v-ripple @click="darkThemeSwitch">
+              <i class="bi bi-sun"></i>
+            </button>
           </div>
-          <button v-if="!dark" v-ripple @click="darkThemeSwitch">
-            <i class="bi bi-moon"></i>
-          </button>
-          <button v-else v-ripple @click="darkThemeSwitch">
-            <i class="bi bi-sun"></i>
-          </button>
         </div>
       </aside>
     </div>
@@ -91,24 +87,35 @@ export default {
 </script>
 
 <style scoped>
+aside {
+  width: 100%;
+  position: relative;
+}
+.navbar-title {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.navbar-title img {
+  width: auto;
+  height: 200px;
+}
 .aside-container {
-  /* position: fixed; */
   display: flex;
   height: 100%;
-  /* position: absolute;
-  top: 0;
-  bottom: 0; */
 }
 .aside-nav-content {
-  display: grid;
+  display: flex;
 }
 .navbar-links {
+  width: 100%;
   margin-top: 150px;
-  border-top: 1px solid var(--input-border-color);
   font-weight: 600;
 }
 .aside-nav-content a,
 .aside-nav-content button {
+  width: 100%;
   white-space: nowrap;
   padding: 1rem;
   padding-left: 2rem;
@@ -116,7 +123,7 @@ export default {
   font: inherit;
   text-decoration: none;
   color: #acb8be;
-  border-bottom: 3px solid var(--input-border-color);
+  border-bottom: 2px solid var(--input-border-color);
 }
 .navbar-links i {
   font-size: 1.4rem;

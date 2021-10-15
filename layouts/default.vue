@@ -73,7 +73,7 @@ export default {
   #app-container {
     display: grid;
     max-width: 100vw;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 25% 75%;
   }
   .nav-component {
     width: 100%;
@@ -87,7 +87,7 @@ export default {
 @media screen and (min-width: 1024px) {
   #app-container {
     display: grid;
-    grid-template-columns: 15% 85%;
+    grid-template-columns: 20% 80%;
   }
 }
 </style>
