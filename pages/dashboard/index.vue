@@ -54,7 +54,7 @@
     <br />
     <div class="notifications-box">
       <h2><i class="bi bi-bell" aria-hidden="true"></i> Notifications</h2>
-      <div class="notification-content">
+      <!-- <div class="notification-content">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iste
         totam odio cumque fugiat quaerat est optio, molestias voluptatibus
         deleniti harum eligendi blanditiis facilis, a repellat, unde tempora
@@ -71,7 +71,7 @@
         voluptatibus repudiandae consequuntur iste eveniet laborum quae vitae
         adipisci cumque itaque eius odit id corrupti nisi exercitationem
         voluptatem debitis natus?
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -145,7 +145,7 @@ export default {
 
 .notification-content {
   margin: 0.5rem 0;
-  padding: 0.5rem 1rem;
+  /* padding: 0.5rem 1rem; */
 }
 @media screen and (min-width: 768px) {
   .analytics-stat {

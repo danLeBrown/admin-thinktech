@@ -53,7 +53,6 @@ export default {
         if (this.user.role.role !== 'author') {
           return this.$router.push(`/login?redirect=dashboard`)
         }
-        return this.$router.push('/dashboard')
       })
       .catch(() => {
         return this.$router.push(`/login?redirect=dashboard`)
@@ -64,7 +63,6 @@ export default {
 
 <style scoped>
 #app-container {
-  display: flex;
   width: 100%;
 }
 .nav-component {
