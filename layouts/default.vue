@@ -6,8 +6,8 @@
           id="app-container"
           :class="
             ['create-account', 'login'].includes($route.name)
-              ? 'hide-nav'
-              : 'show-nav'
+              ? 'auth-page'
+              : 'page'
           "
         >
           <NavbarComponent
@@ -62,6 +62,9 @@ export default {
 </script>
 
 <style scoped>
+#app-container {
+  display: grid;
+}
 .nav-component {
   display: none;
   position: relative;
@@ -69,10 +72,9 @@ export default {
 .router-view {
   padding: 1rem;
 }
+
 @media screen and (min-width: 768px) {
-  #app-container {
-    display: grid;
-    max-width: 100vw;
+  .page {
     grid-template-columns: 25% 75%;
   }
   .nav-component {
@@ -85,8 +87,7 @@ export default {
   }
 }
 @media screen and (min-width: 1024px) {
-  #app-container {
-    display: grid;
+  .page {
     grid-template-columns: 20% 80%;
   }
 }
