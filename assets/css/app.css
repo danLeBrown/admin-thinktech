@@ -85,6 +85,10 @@
   -ms-border-radius: 0.25rem !important;
   -o-border-radius: 0.25rem !important;
 }
+
+.image-tool__image-picture {
+  margin: 0 auto;
+}
 #nav .nuxt-link-exact-active {
   color: #0864b7;
   border-bottom: 3px solid #0864b7;
@@ -165,7 +169,7 @@ body {
   position: absolute;
   margin: 0.3rem;
   text-transform: uppercase;
-  /* background: var(--white-color); */
+  z-index: 1;
   top: 8px;
   font-weight: bold;
   font-size: 15px;
@@ -308,11 +312,13 @@ form .input-div select {
 .postcard-container .postcard-img {
   border-radius: 0.25rem;
   width: 100%;
+  height: 300px;
   object-fit: cover;
   -webkit-border-radius: 0.25rem;
   -moz-border-radius: 0.25rem;
   -ms-border-radius: 0.25rem;
   -o-border-radius: 0.25rem;
+  display: flex;
 }
 
 .post-title {
@@ -421,15 +427,8 @@ form .input-div select {
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 2rem;
   }
-  /* .articles-div .postcard-img-div {
-        min-height: 300px;
-    } */
-  .articles-div .postcard:last-child {
-    grid-column: 1/3;
-  }
-  .articles-div .postcard:last-child img {
-    width: 100%;
-    height: auto;
+  .articles-div .postcard-img-div {
+    min-height: 300px;
   }
   .postcard {
     height: 100%;

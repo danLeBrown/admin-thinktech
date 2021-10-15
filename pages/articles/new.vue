@@ -176,7 +176,8 @@ export default {
       })
     },
     saveArticle(output) {
-      if (this.$route.query.edit === 'true') {
+      // return console.log(new FormData(output))
+      if (this.$route.query.edit === true) {
         output.id = this.article.id
         output.edit = true
         return Article.create(output)

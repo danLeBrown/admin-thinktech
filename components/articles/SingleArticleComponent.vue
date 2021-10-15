@@ -18,10 +18,10 @@
         />
         <div class="func-div">
           <button class="edit-btn" @click="edit">
-            <i class="bi bi-pencil"></i>
+            <span class="bi bi-pencil"></span>
           </button>
           <button class="del-btn" @click="confirmDel">
-            <i class="bi bi-trash"></i>
+            <span class="bi bi-trash"></span>
           </button>
         </div>
       </div>
@@ -47,7 +47,7 @@
 
     <div v-if="showDelete" class="vs-wrapper">
       <div class="vs-container">
-        <h3>Are you sure?</h3>
+        <h3>Are you sure you want to delete <br />"{{ d_article.title }}"</h3>
         <form @submit.prevent="affirmDelete">
           <button v-ripple class="lhs-btn" @click="showDelete = false">
             Keep Article
@@ -115,6 +115,11 @@ export default {
       return url
     },
   },
+  mounted() {
+    $('.postcard-container').mouseover((e) => {
+      $(e.target).closest('.func-div').css('visibility', 'visible')
+    })
+  },
   methods: {
     checkBtn(e, link) {
       if ($(e.target).closest('button').length === 0) {
@@ -147,14 +152,17 @@ export default {
   transition: all ease-in-out 300ms;
 }
 .func-div {
+  visibility: hidden;
   position: absolute;
-  bottom: 4px;
+  bottom: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  transition: all ease-in-out 300ms;
 }
 .func-div button {
-  padding: 0.5rem;
+  padding: 1rem;
+  font: inherit;
   color: #fff;
   border-radius: 0.25rem;
 }

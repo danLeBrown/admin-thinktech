@@ -80,7 +80,6 @@ export default {
   .nav-component {
     width: 100%;
     display: block;
-    height: 100vh;
     top: 0;
     bottom: 0;
     box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);

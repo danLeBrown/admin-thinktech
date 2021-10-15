@@ -103,7 +103,9 @@ aside {
 }
 .aside-container {
   display: flex;
-  height: 100%;
+  min-height: 100vh;
+  position: sticky;
+  top: 0px;
 }
 .aside-nav-content {
   display: flex;
