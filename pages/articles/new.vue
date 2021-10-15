@@ -188,7 +188,7 @@ export default {
           this.$router.push({ name: 'articles' })
         })
         .catch((err) => {
-          return this.$store.dispatch('alert/getAlert', err.response)
+          this.$store.dispatch('alert/getAlert', err.response)
         })
     },
     getArticle(title) {
@@ -196,10 +196,9 @@ export default {
         .then((res) => {
           this.article = res.data.data.article
           this.$root.$emit('setSimilarArticles', res.data.data.similar_articles)
-          return true
         })
         .catch((err) => {
-          return this.$store.dispatch('alert/getAlert', err.response)
+          this.$store.dispatch('alert/getAlert', err.response)
         })
     },
   },
