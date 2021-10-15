@@ -180,15 +180,6 @@ export default {
       if (this.$route.query.edit === true) {
         output.id = this.article.id
         output.edit = true
-        return Article.create(output)
-          .then((res) => {
-            this.loading = false
-            this.$store.dispatch('success/getAlert', res)
-            this.$router.push({ name: 'articles' })
-          })
-          .catch((err) => {
-            return this.$store.dispatch('alert/getAlert', err.response)
-          })
       }
       return Article.create(output)
         .then((res) => {
