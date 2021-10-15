@@ -71,8 +71,9 @@ export default {
 }
 @media screen and (min-width: 768px) {
   #app-container {
-    display: flex;
+    display: grid;
     max-width: 100vw;
+    grid-template-columns: 30% 70%;
   }
   .nav-component {
     width: 100%;

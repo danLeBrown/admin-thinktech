@@ -51,10 +51,10 @@
         </div>
       </div>
     </div>
-    <br />
+    <!-- <br />
     <div class="notifications-box">
       <h2><i class="bi bi-bell" aria-hidden="true"></i> Notifications</h2>
-      <!-- <div class="notification-content">
+      <div class="notification-content">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iste
         totam odio cumque fugiat quaerat est optio, molestias voluptatibus
         deleniti harum eligendi blanditiis facilis, a repellat, unde tempora
@@ -71,8 +71,8 @@
         voluptatibus repudiandae consequuntur iste eveniet laborum quae vitae
         adipisci cumque itaque eius odit id corrupti nisi exercitationem
         voluptatem debitis natus?
-      </div> -->
-    </div>
+      </div>
+    </div> -->
   </div>
 </template>
 
@@ -105,12 +105,11 @@ export default {
 
 <style scoped>
 #dashboard {
-  margin-top: 2rem;
+  padding-top: 2rem;
   height: 100%;
   align-items: center;
 }
 .analytics-stat {
-  overflow-x: scroll;
   display: grid;
   padding: 1rem 0;
 }
@@ -148,8 +147,9 @@ export default {
 }
 @media screen and (min-width: 768px) {
   .analytics-stat {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 100vw;
+    overflow-x: scroll;
+    display: flex;
+    width: 100%;
   }
   .content {
     width: 300px;
