@@ -62,9 +62,6 @@ export default {
 </script>
 
 <style scoped>
-#app-container {
-  width: 100%;
-}
 .nav-component {
   display: none;
   position: relative;
@@ -73,17 +70,23 @@ export default {
   padding: 1rem;
 }
 @media screen and (min-width: 768px) {
+  #app-container {
+    display: flex;
+    max-width: 100vw;
+  }
   .nav-component {
     width: 100%;
     display: block;
-    flex: 5;
     height: 100vh;
     top: 0;
     bottom: 0;
     box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
   }
-  .router-view {
-    flex: 6;
+}
+@media screen and (min-width: 1024px) {
+  #app-container {
+    display: grid;
+    grid-template-columns: 15% 85%;
   }
 }
 </style>

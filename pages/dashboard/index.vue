@@ -110,8 +110,7 @@ export default {
   align-items: center;
 }
 .analytics-stat {
-  width: 100%;
-  overflow: hidden;
+  overflow-x: scroll;
   display: grid;
   padding: 1rem 0;
 }
@@ -150,10 +149,11 @@ export default {
 @media screen and (min-width: 768px) {
   .analytics-stat {
     grid-template-columns: repeat(3, 1fr);
+    max-width: 100vw;
   }
   .content {
     width: 300px;
-    margin: 1rem;
+    margin: 1rem 0.5rem;
   }
 }
 </style>
