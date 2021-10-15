@@ -1,54 +1,52 @@
 <template>
   <div id="dashboard">
     <h2><i class="bi bi-bar-chart"></i> Dashboard</h2>
-    <div style="padding: 1rem">
-      <div class="analytics-stat">
-        <div class="analytics-container">
-          <div class="content written">
-            <h3>ARTICLES WRITTEN</h3>
-            <div class="content-data">
-              <span v-if="loading"
-                ><v-progress-circular
-                  indeterminate
-                  color="white"
-                  width="3"
-                  size="20"
-                ></v-progress-circular
-              ></span>
-              <h3 v-else>{{ analytics_stats.articles_written }}</h3>
-            </div>
+    <div class="analytics-stat">
+      <div class="analytics-container">
+        <div class="content written">
+          <h3>ARTICLES WRITTEN</h3>
+          <div class="content-data">
+            <span v-if="loading"
+              ><v-progress-circular
+                indeterminate
+                color="white"
+                width="3"
+                size="20"
+              ></v-progress-circular
+            ></span>
+            <h3 v-else>{{ analytics_stats.articles_written }}</h3>
           </div>
         </div>
-        <div class="analytics-container">
-          <div class="content reads">
-            <h3>ARTICLES READ</h3>
-            <div class="content-data">
-              <span v-if="loading"
-                ><v-progress-circular
-                  indeterminate
-                  color="white"
-                  width="3"
-                  size="20"
-                ></v-progress-circular
-              ></span>
-              <h3 v-else>{{ analytics_stats.articles_views }}</h3>
-            </div>
+      </div>
+      <div class="analytics-container">
+        <div class="content reads">
+          <h3>ARTICLES READ</h3>
+          <div class="content-data">
+            <span v-if="loading"
+              ><v-progress-circular
+                indeterminate
+                color="white"
+                width="3"
+                size="20"
+              ></v-progress-circular
+            ></span>
+            <h3 v-else>{{ analytics_stats.articles_views }}</h3>
           </div>
         </div>
-        <div class="analytics-container">
-          <div class="content visits">
-            <h3>PROFILE VISITS</h3>
-            <div class="content-data">
-              <span v-if="loading"
-                ><v-progress-circular
-                  indeterminate
-                  color="white"
-                  width="3"
-                  size="20"
-                ></v-progress-circular
-              ></span>
-              <h3 v-else>{{ analytics_stats.profile_visits }}</h3>
-            </div>
+      </div>
+      <div class="analytics-container">
+        <div class="content visits">
+          <h3>PROFILE VISITS</h3>
+          <div class="content-data">
+            <span v-if="loading"
+              ><v-progress-circular
+                indeterminate
+                color="white"
+                width="3"
+                size="20"
+              ></v-progress-circular
+            ></span>
+            <h3 v-else>{{ analytics_stats.profile_visits }}</h3>
           </div>
         </div>
       </div>
@@ -108,22 +106,23 @@ export default {
 <style scoped>
 #dashboard {
   margin-top: 2rem;
-  display: flex;
   height: 100%;
   align-items: center;
 }
 .analytics-stat {
+  width: 100%;
+  overflow: hidden;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 0.5rem;
+  padding: 1rem 0;
 }
 .content {
   padding: 1rem;
+  width: 100%;
   min-height: 100px;
-  max-width: 300px;
   border-radius: 1rem;
   color: #fff;
   position: relative;
+  margin: 1rem 0;
 }
 
 .content-data {
@@ -147,5 +146,14 @@ export default {
 .notification-content {
   margin: 0.5rem 0;
   padding: 0.5rem 1rem;
+}
+@media screen and (min-width: 768px) {
+  .analytics-stat {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .content {
+    width: 300px;
+    margin: 1rem;
+  }
 }
 </style>

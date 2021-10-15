@@ -117,9 +117,9 @@ body {
   min-height: 100vh;
   padding-top: 2rem;
 }
+
 .flex-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   align-items: center;
 }
 
@@ -138,8 +138,8 @@ body {
 
 .form-container form {
   padding: 1rem;
-  background: #fff;
-  border: 1px solid #eaedf3;
+  background: var(--white-color);
+  border: 1px solid var(--input-border-color);
   box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0 1px 3px rgb(0 0 0 / 4%);
@@ -455,6 +455,9 @@ form .input-div select {
   }
   #trending-component .v-skeleton-loader__image {
     height: 350px;
+  }
+  .flex-container {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

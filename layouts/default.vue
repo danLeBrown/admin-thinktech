@@ -3,7 +3,7 @@
     <v-app id="app-wrapper">
       <v-main>
         <v-container
-          class="app-container"
+          id="app-container"
           :class="
             ['create-account', 'login'].includes($route.name)
               ? 'hide-nav'
@@ -12,10 +12,9 @@
         >
           <NavbarComponent
             v-if="!['create-account', 'login'].includes($route.name)"
-            id="nav-component"
+            class="nav-component"
           />
-          <div></div>
-          <RouterView id="router-view" />
+          <RouterView class="router-view" />
           <AlertComponent />
         </v-container>
       </v-main>
@@ -35,13 +34,6 @@ export default {
   computed: {
     user() {
       return this.$store.state.user.user
-    },
-  },
-  watch: {
-    user() {
-      if (this.user.auth === true) {
-        return this.redirectToDashboard()
-      }
     },
   },
   mounted() {
@@ -67,32 +59,33 @@ export default {
         return this.$router.push(`/login?redirect=dashboard`)
       })
   },
-  methods: {
-    redirectToDashboard() {},
-  },
 }
 </script>
 
 <style scoped>
-.app-container {
-  display: grid;
+#app-container {
+  display: flex;
   width: 100%;
-  grid-gap: 1rem;
 }
-
-.show-nav {
-  grid-template-columns: 20% 80%;
+.nav-component {
+  display: none;
+  position: relative;
 }
-#nav-component {
-  flex: 2;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  width: 19%;
-  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
-}
-#router-view {
-  flex: 10;
+.router-view {
   padding: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .nav-component {
+    width: 100%;
+    display: block;
+    flex: 5;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
+  }
+  .router-view {
+    flex: 6;
+  }
 }
 </style>
