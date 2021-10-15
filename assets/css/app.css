@@ -119,13 +119,12 @@ body {
 }
 
 .flex-container {
+  min-height: 100vh;
   display: grid;
+  grid-gap: 1.5rem;
   align-items: center;
 }
 
-.form-container {
-  padding: 1rem;
-}
 .form-container img {
   width: 100%;
   height: auto;

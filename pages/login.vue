@@ -54,7 +54,7 @@
                   size="20"
                 ></v-progress-circular
               ></span>
-              <span v-else> Become An Author </span>
+              <span v-else> Resume writing </span>
             </button>
           </div>
         </form>
