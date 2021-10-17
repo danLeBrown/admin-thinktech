@@ -156,4 +156,9 @@ export default {
     margin: 1rem 0.5rem;
   }
 }
+@media screen and (min-width: 1024px) {
+  .analytics-stat {
+    overflow-x: auto;
+  }
+}
 </style>

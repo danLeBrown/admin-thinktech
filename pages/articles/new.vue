@@ -11,7 +11,7 @@
           <h3>
             <input
               id=""
-              v-model="title"
+              v-model="new_article.title"
               type="text"
               name=""
               placeholder="Enter title here"
@@ -82,6 +82,10 @@ export default {
       title: '',
       loading: false,
       article: {},
+      new_article: {
+        title: '',
+        body: '',
+      },
     }
   },
   async mounted() {
@@ -97,9 +101,10 @@ export default {
       editor
         .save()
         .then((output) => {
-          output.title = this.title
+          // console.log(output)
+          this.new_article.body = output
           this.loading = true
-          this.saveArticle(output)
+          this.saveArticle()
         })
         .catch((err) => {
           // eslint-disable-next-line no-console
@@ -175,13 +180,13 @@ export default {
         },
       })
     },
-    saveArticle(output) {
+    saveArticle() {
       // return console.log(new FormData(output))
       if (this.$route.query.edit === true) {
-        output.id = this.article.id
-        output.edit = true
+        this.new_article.id = this.article.id
+        this.new_article.edit = true
       }
-      return Article.create(output)
+      return Article.create(this.new_article)
         .then((res) => {
           this.loading = false
           this.$store.dispatch('success/getAlert', res)
