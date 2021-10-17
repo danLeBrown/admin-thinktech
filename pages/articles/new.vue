@@ -92,7 +92,7 @@ export default {
     let body = null
     if (this.$route.query.edit) {
       await this.getArticle(this.$route.query.title)
-      this.title = this.article.title
+      this.new_article.title = this.article.title
       body = this.article.body
     }
     const editor = this.setupEditorJS(body)
@@ -101,10 +101,12 @@ export default {
       editor
         .save()
         .then(async (output) => {
-          // console.log(output)
           this.new_article.body = await output
           this.loading = true
-          this.saveArticle()
+          if (this.$route.query.edit === 'true') {
+            return this.updateArticle()
+          }
+          return this.saveArticle()
         })
         .catch((err) => {
           // eslint-disable-next-line no-console
@@ -181,10 +183,6 @@ export default {
       })
     },
     saveArticle() {
-      if (this.$route.query.edit === true) {
-        this.new_article.id = this.article.id
-        this.new_article.edit = true
-      }
       return Article.create(this.new_article)
         .then((res) => {
           this.loading = false
@@ -203,6 +201,18 @@ export default {
           this.$root.$emit('setSimilarArticles', res.data.data.similar_articles)
         })
         .catch((err) => {
+          this.$store.dispatch('alert/getAlert', err.response)
+        })
+    },
+    updateArticle() {
+      return Article.update(this.article.id, this.new_article)
+        .then((res) => {
+          this.loading = false
+          this.$store.dispatch('success/getAlert', res)
+          this.$router.push({ name: 'articles' })
+        })
+        .catch((err) => {
+          this.loading = false
           this.$store.dispatch('alert/getAlert', err.response)
         })
     },

@@ -25,6 +25,10 @@ export default {
     await Csrf.getCookie()
     return AuthApi.post('/articles', data)
   },
+  async update(id, data) {
+    await Csrf.getCookie()
+    return AuthApi.put(`/articles/${id}`, data)
+  },
   async delete(id) {
     await Csrf.getCookie()
     return AuthApi.delete('/articles/' + id)
