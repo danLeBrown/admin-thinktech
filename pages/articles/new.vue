@@ -85,6 +85,8 @@ export default {
       new_article: {
         title: '',
         body: '',
+        edit: false,
+        id: '',
       },
     }
   },
@@ -193,6 +195,7 @@ export default {
           this.$router.push({ name: 'articles' })
         })
         .catch((err) => {
+          this.loading = false
           this.$store.dispatch('alert/getAlert', err.response)
         })
     },
