@@ -12,6 +12,6 @@ export default {
         resolve(_token)
       })
     }
-    return Api.get('/csrf-cookie')
+    // return Api.get('/csrf-cookie')
   },
 }

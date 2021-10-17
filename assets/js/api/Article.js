@@ -1,32 +1,32 @@
-import Api from './Api'
+import AuthApi from './AuthApi'
 import Csrf from './Csrf'
 export default {
   async getTrending() {
     await Csrf.getCookie()
-    return Api.get('/articles/trending')
+    return AuthApi.get('/articles/trending')
   },
   async getArticles() {
     await Csrf.getCookie()
-    return Api.get('/articles')
+    return AuthApi.get('/articles')
   },
   async getAuthor(id) {
     await Csrf.getCookie()
-    return Api.get('/articles/author/' + id)
+    return AuthApi.get('/articles/author/' + id)
   },
   async getTag(tag) {
     await Csrf.getCookie()
-    return Api.get('/articles/tag/' + tag)
+    return AuthApi.get('/articles/tag/' + tag)
   },
   async getTitle(title) {
     await Csrf.getCookie()
-    return Api.get('/articles/' + title)
+    return AuthApi.get('/articles/' + title)
   },
   async create(data) {
     await Csrf.getCookie()
-    return Api.post('/articles', data)
+    return AuthApi.post('/articles', data)
   },
   async delete(id) {
     await Csrf.getCookie()
-    return Api.delete('/articles/' + id)
+    return AuthApi.delete('/articles/' + id)
   },
 }

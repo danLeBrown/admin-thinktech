@@ -5,7 +5,7 @@
       article
     </h2>
     <br />
-    <form id="editor-form" @submit.prevent="saveArticle">
+    <form id="editor-form">
       <div class="form-content">
         <div class="input-div">
           <h3>
@@ -78,8 +78,6 @@ export default {
   middleware: ['auth'],
   data() {
     return {
-      editor: {},
-      title: '',
       loading: false,
       article: {},
       new_article: {
@@ -94,17 +92,17 @@ export default {
     let body = null
     if (this.$route.query.edit) {
       await this.getArticle(this.$route.query.title)
-      this.title = this.article.body.title
       this.title = this.article.title
       body = this.article.body
     }
     const editor = this.setupEditorJS(body)
-    document.querySelector('#editor-form').addEventListener('submit', () => {
+    document.querySelector('#editor-form').addEventListener('submit', (e) => {
+      e.preventDefault()
       editor
         .save()
-        .then((output) => {
+        .then(async (output) => {
           // console.log(output)
-          this.new_article.body = output
+          this.new_article.body = await output
           this.loading = true
           this.saveArticle()
         })
@@ -183,7 +181,6 @@ export default {
       })
     },
     saveArticle() {
-      // return console.log(new FormData(output))
       if (this.$route.query.edit === true) {
         this.new_article.id = this.article.id
         this.new_article.edit = true
