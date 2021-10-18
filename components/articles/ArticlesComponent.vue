@@ -62,6 +62,9 @@ export default {
     },
   },
   mounted() {
+    this.$root.$on('articleDeleted', (id) => {
+      this.articles = this.articles.filter((article) => article.id !== id)
+    })
     if (this.author.is_ready) {
       return this.fetchAuthor()
     }
@@ -75,21 +78,11 @@ export default {
   //     this.fetchAuthor()
   //   })
 
-  //   this.$root.$on('articleDeleted', (id) => {
-  //     this.articles = this.articles.filter((article) => article.id !== id)
-  //   })
   //   if (this.$route.name === 'articles') {
   //     this.fetchAuthor()
   //   }
   // },
   methods: {
-    // fetchPosts() {
-    //   return Article.getArticles()
-    //     .then((res) => {
-    //       this.articles = res.data.data
-    //     })
-    //     .catch(() => {})
-    // },
     fetchAuthor() {
       Article.getAuthor(this.author.id)
         .then((res) => {

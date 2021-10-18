@@ -100,8 +100,8 @@ export default {
       e.preventDefault()
       editor
         .save()
-        .then(async (output) => {
-          this.new_article.body = await output
+        .then((output) => {
+          this.new_article.body = output
           this.loading = true
           if (this.$route.query.edit === 'true') {
             return this.updateArticle()

@@ -137,8 +137,9 @@ export default {
     },
     affirmDelete() {
       this.loading = true
-      return Article.delete(this.d_article.id).then(() => {
+      return Article.delete(this.d_article.id).then((res) => {
         this.$root.$emit('articleDeleted', this.d_article.id)
+        this.$store.dispatch('success/getAlert', res)
         this.showDelete = false
         this.loading = false
       })
@@ -152,7 +153,7 @@ export default {
   transition: all ease-in-out 300ms;
 }
 .func-div {
-  visibility: hidden;
+  /* visibility: hidden; */
   position: absolute;
   bottom: 0;
   width: 100%;
