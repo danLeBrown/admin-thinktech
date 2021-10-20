@@ -84,7 +84,7 @@ export default {
   // },
   methods: {
     fetchAuthor() {
-      Article.getAuthor(this.author.id)
+      Article.getAuthor({ filter_by: 'id', q: this.author.id })
         .then((res) => {
           this.articles = res.data.data
           return (this.loading = false)
