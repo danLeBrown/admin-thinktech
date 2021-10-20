@@ -11,7 +11,9 @@ export default {
   },
   async getAuthor(data) {
     await Csrf.getCookie()
-    return AuthApi.get('/articles/author', data)
+    return AuthApi.get(
+      `/articles/author?filter_by=${data.filter_by}&q=${data.q}`
+    )
   },
   async getTag(tag) {
     await Csrf.getCookie()
